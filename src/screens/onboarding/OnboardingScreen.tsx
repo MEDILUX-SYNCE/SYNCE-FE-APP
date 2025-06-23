@@ -104,7 +104,7 @@ export default function OnboardingScreen() {
   );
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
       <FlatList
         ref={flatListRef}
         data={TitleData}
