@@ -1,8 +1,6 @@
-import React from "react";
-import HomeScreen from "@/screens/home/HomeScreen";
-import SplashScreen from "@/screens/auth/SplashScreen";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import bottomTabNavigator from "./bottomTabNavigator";
+import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import bottomTabNavigator from './BottomTabNavigator';
 
 const Stack = createNativeStackNavigator();
 

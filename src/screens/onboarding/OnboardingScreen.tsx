@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, { useRef, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {
@@ -126,6 +125,7 @@ export default function OnboardingScreen() {
 
       <View style={styles.bottomButtonContainer}>
         <AppButton
+          activate={true}
           title={currentIndex === TitleData.length - 1 ? '시작하기' : '다음'}
           onPress={() => handNext(currentIndex)}
         />
