@@ -6,6 +6,9 @@ import { enableScreens } from 'react-native-screens';
 import LoginScreen from './src/screens/auth/LoginScreen';
 import SplashScreen from './src/screens/onboarding/SplashScreen';
 import HomeScreen from './src/screens/home/HomeScreen';
+import SignupScreen from './src/screens/auth/SignupScreen';
+import AccountSearchScreen from './src/screens/auth/AccountSearchScreen';
+
 enableScreens();
 
 const Stack = createNativeStackNavigator();
@@ -21,6 +24,8 @@ export default function App() {
         <Stack.Screen name="Onboarding" component={OnboardingScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="AccountSearch" component={AccountSearchScreen} />
+        <Stack.Screen name="Signup" component={SignupScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

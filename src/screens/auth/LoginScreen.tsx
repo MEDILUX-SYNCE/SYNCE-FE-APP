@@ -7,19 +7,24 @@ import {
   KeyboardAvoidingView,
   Platform,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 import { TopNavigation } from '../../navigation/TopNavigation';
 import { AppText } from '../../components/AppText';
 import { AppInput } from '../../components/AppInput';
 import { AppButton } from '../../components/AppButton';
 import { colors } from '../../theme/color';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../navigation/RootStackParamList';
 
 const { width } = Dimensions.get('window');
 
 export default function LoginScreen() {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const isValid = email.length > 0 && password.length > 0;
 
   return (
@@ -67,21 +72,31 @@ export default function LoginScreen() {
               />
 
               <View style={styles.rowTextContainer}>
-                <AppText color="gray4" weight="medium" style={styles.link}>
-                  아이디 찾기
-                </AppText>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('AccountSearch')}
+                >
+                  <AppText color="gray4" weight="medium" style={styles.link}>
+                    아이디 찾기
+                  </AppText>
+                </TouchableOpacity>
                 <AppText color="gray4" weight="medium" style={styles.separator}>
                   |
                 </AppText>
-                <AppText color="gray4" weight="medium" style={styles.link}>
-                  비밀번호 찾기
-                </AppText>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('AccountSearch')}
+                >
+                  <AppText color="gray4" weight="medium" style={styles.link}>
+                    비밀번호 찾기
+                  </AppText>
+                </TouchableOpacity>
                 <AppText color="gray4" weight="medium" style={styles.separator}>
                   |
                 </AppText>
-                <AppText color="gray4" weight="medium" style={styles.link}>
-                  회원가입
-                </AppText>
+                <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+                  <AppText color="gray4" weight="medium" style={styles.link}>
+                    회원가입
+                  </AppText>
+                </TouchableOpacity>
               </View>
             </View>
 
