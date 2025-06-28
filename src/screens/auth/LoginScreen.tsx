@@ -44,7 +44,7 @@ export default function LoginScreen() {
             로그인
           </AppText>
 
-          <View>
+          <View style={{ gap: 16, marginBottom: 32, marginTop: 16 }}>
             <AppInput
               placeholder="이메일 입력"
               value={email}
@@ -55,7 +55,6 @@ export default function LoginScreen() {
               value={password}
               onChangeText={setPassword}
               secureTextEntry
-              containerStyle={{ marginTop: 16, marginBottom: 32 }}
             />
           </View>
 
@@ -66,9 +65,7 @@ export default function LoginScreen() {
               <AppButton
                 activate={isValid}
                 title="로그인"
-                onPress={() => {
-                  console.log('로그인 시도');
-                }}
+                onPress={() => navigation.navigate('Home')}
               />
 
               <View style={styles.rowTextContainer}>

@@ -1,9 +1,9 @@
 // 앱 텍스트 컴포넌트
 
-import { Text, TextProps, TextStyle } from "react-native";
-import { colors } from "../theme/color";
-import { fonts } from "../theme/fonts";
-import { fontSizes } from "../theme/fontSizes";
+import { StyleProp, Text, TextProps, TextStyle } from 'react-native';
+import { colors } from '../theme/color';
+import { fonts } from '../theme/fonts';
+import { fontSizes } from '../theme/fontSizes';
 
 // fonts 객체의 key 이름만 가져와서 문자열 유니언 타입으로 FontWeight에 저장
 type FontWeight = keyof typeof fonts;
@@ -23,14 +23,14 @@ interface AppTextProps extends TextProps {
   weight?: FontWeight;
   size?: FontSize;
   color?: Color;
-  style?: TextStyle;
+  style?: StyleProp<TextStyle>;
 }
 
 export const AppText = ({
   children,
-  weight = "regular",
-  size = "md",
-  color = "black",
+  weight = 'regular',
+  size = 'md',
+  color = 'black',
   style,
   ...rest
 }: AppTextProps) => {

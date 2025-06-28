@@ -10,6 +10,7 @@ import {
 import { colors } from '../theme/color';
 import { fontSizes } from '../theme/fontSizes';
 import { fonts } from '../theme/fonts';
+import { AppText } from './AppText';
 
 const { width } = Dimensions.get('window');
 
@@ -18,23 +19,32 @@ interface AppInputProps extends TextInputProps {
   containerStyle?: StyleProp<ViewStyle>;
   // 에러일 때 테두리 색 바꾸는 isError
   isError?: boolean;
+  errorText?: string;
 }
 
 export const AppInput = ({
   containerStyle,
   isError = false,
+  errorText,
   // TextInput이 지원하는 모든 props 자동으로 받아서 넘기기
   ...textInputProps
 }: AppInputProps) => {
   return (
-    <View
-      style={[styles.container, isError && styles.inputError, containerStyle]}
-    >
-      <TextInput
-        style={styles.textInput}
-        placeholderTextColor={colors.gray3}
-        {...textInputProps}
-      />
+    <View style={containerStyle}>
+      <View
+        style={[styles.container, isError && styles.inputError, containerStyle]}
+      >
+        <TextInput
+          style={styles.textInput}
+          placeholderTextColor={colors.gray3}
+          {...textInputProps}
+        />
+      </View>
+      {errorText && (
+        <AppText color="primary1" size="xs" weight="regular">
+          {errorText}
+        </AppText>
+      )}
     </View>
   );
 };
