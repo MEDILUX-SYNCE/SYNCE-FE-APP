@@ -10,7 +10,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { AppText } from './AppText';
 import { colors } from '../theme/color';
 
-type ButtonType = 'fill' | 'outline';
+type ButtonType = 'fill' | 'outline' | 'secondary' | 'white';
 
 interface AppButtonProps {
   title: string;
@@ -30,6 +30,8 @@ export const AppButton = ({
   icon,
 }: AppButtonProps) => {
   const isOutline = type === 'outline';
+  const isSecondary = type === 'secondary';
+  const isWhite = type === 'white';
 
   return (
     <TouchableOpacity
@@ -63,6 +65,24 @@ export const AppButton = ({
           </AppText>
         </View>
       )}
+
+      {/* secondary */}
+      {isSecondary && (
+        <View style={[styles.secondaryInner, !activate && styles.disabled]}>
+          <AppText color="primary1" weight="bold" size="md">
+            {title}
+          </AppText>
+        </View>
+      )}
+
+      {/* white */}
+      {isWhite && (
+        <View style={[styles.whiteInner, !activate && styles.disabled]}>
+          <AppText color="primary1" weight="bold" size="md">
+            {title}
+          </AppText>
+        </View>
+      )}
     </TouchableOpacity>
   );
 };
@@ -86,6 +106,16 @@ const styles = StyleSheet.create({
   },
   outlineContent: {
     flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  secondaryInner: {
+    paddingVertical: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  whiteInner: {
+    paddingVertical: 16,
     alignItems: 'center',
     justifyContent: 'center',
   },

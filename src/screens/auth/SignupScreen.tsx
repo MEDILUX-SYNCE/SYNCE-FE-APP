@@ -17,6 +17,7 @@ import { RootStackParamList } from '../../navigation/RootStackParamList';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { AppInput } from '../../components/AppInput';
+import { AppModal } from '../../components/AppModal';
 
 const { width, height } = Dimensions.get('window');
 
@@ -65,8 +66,10 @@ export default function SignupScreen() {
 
   const [allChecked, setAllChecked] = useState(false);
   const [agree14, setAgree14] = useState(false);
-  const [agreeTerms, setAgreeTerms] = useState(false);
+  const [agreeService, setAgreeService] = useState(false);
   const [agreePrivacy, setAgreePrivacy] = useState(false);
+  const [agreeServiceModal, setAgreeServiceModal] = useState(false); // agreeServiceModal 상태 관리
+  const [agreePrivacyModal, setAgreePrivacyModal] = useState(false); // agreePrivacyModal 상태 관리
   const [currentStep, setCurrentStep] = useState(0); // StepIndicator 상태 관리
   const [email, setEmail] = useState(''); // email 상태 관리
   const [emailError, setEmailError] = useState(false); // email error 상태 관리
@@ -80,13 +83,13 @@ export default function SignupScreen() {
   const [code, setCode] = useState(''); // code 상태 관리
   const inputRef = useRef<TextInput>(null);
 
-  const allAgreed = agree14 && agreeTerms && agreePrivacy;
+  const allAgreed = agree14 && agreeService && agreePrivacy;
 
   const toggleAll = () => {
     const next = !allChecked;
     setAllChecked(next);
     setAgree14(next);
-    setAgreeTerms(next);
+    setAgreeService(next);
     setAgreePrivacy(next);
   };
 
@@ -170,8 +173,8 @@ export default function SignupScreen() {
         />
         <View style={{ flexDirection: 'row' }}>
           <AgreementItem
-            checked={agreeTerms}
-            onPress={() => setAgreeTerms(!agreeTerms)}
+            checked={agreeService}
+            onPress={() => setAgreeService(!agreeService)}
             label={
               <>
                 <AppText
@@ -179,7 +182,7 @@ export default function SignupScreen() {
                   weight="medium"
                   style={{
                     textDecorationLine: 'none',
-                    color: agreeTerms ? colors.gray4 : colors.gray3,
+                    color: agreeService ? colors.gray4 : colors.gray3,
                   }}
                 >
                   (필수){' '}
@@ -188,8 +191,9 @@ export default function SignupScreen() {
                   size="sm"
                   weight="medium"
                   style={{
-                    color: agreeTerms ? colors.primary1 : colors.gray3,
+                    color: agreeService ? colors.primary1 : colors.gray3,
                   }}
+                  onPress={() => setAgreeServiceModal(true)}
                 >
                   서비스 이용약관 확인
                 </AppText>
@@ -220,6 +224,7 @@ export default function SignupScreen() {
                   style={{
                     color: agreePrivacy ? colors.primary1 : colors.gray3,
                   }}
+                  onPress={() => setAgreePrivacyModal(true)}
                 >
                   개인정보 수집이용 동의
                 </AppText>
@@ -228,6 +233,18 @@ export default function SignupScreen() {
             highlight
           />
         </View>
+        <AppModal
+          title={'서비스 이용약관'}
+          content={'대충 서비스 이용약관 내용입니다.'}
+          visible={agreeServiceModal}
+          onClose={() => setAgreeServiceModal(false)}
+        />
+        <AppModal
+          title={'개인정보 수집이용'}
+          content={'대충 개인정보 수집이용 내용입니다.'}
+          visible={agreePrivacyModal}
+          onClose={() => setAgreePrivacyModal(false)}
+        />
       </View>
     </View>,
 
@@ -495,8 +512,8 @@ export default function SignupScreen() {
   ];
 
   useEffect(() => {
-    setAllChecked(agree14 && agreeTerms && agreePrivacy);
-  }, [agree14, agreeTerms, agreePrivacy]);
+    setAllChecked(agree14 && agreeService && agreePrivacy);
+  }, [agree14, agreeService, agreePrivacy]);
 
   return (
     <View style={styles.screen}>
