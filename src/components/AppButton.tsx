@@ -38,46 +38,66 @@ export const AppButton = ({
       disabled={!activate}
       onPress={onPress}
       activeOpacity={0.85}
-      style={[isOutline ? styles.outlineButton : style]}
+      style={[!isOutline && !isSecondary && !isWhite && style]}
     >
-      {isOutline ? (
-        <View style={[styles.outlineContent]}>
-          {icon && <View style={styles.iconWrapper}>{icon}</View>}
-          <AppText color="black" weight="medium" size="md">
-            {title}
-          </AppText>
-        </View>
-      ) : activate ? (
-        <LinearGradient
-          colors={['#FF3766', '#F58F95']}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          style={[styles.button, style]}
-        >
-          <AppText color="white" weight="bold" size="md">
-            {title}
-          </AppText>
-        </LinearGradient>
-      ) : (
-        <View style={styles.button}>
-          <AppText color="white" weight="bold" size="md">
-            {title}
-          </AppText>
+      {/* outline */}
+      {isOutline && (
+        <View style={[styles.outlineButton, style]}>
+          <View style={styles.outlineContent}>
+            {icon && <View style={styles.iconWrapper}>{icon}</View>}
+            <AppText color="black" weight="medium" size="md">
+              {title}
+            </AppText>
+          </View>
         </View>
       )}
 
+      {/* fill */}
+      {!isOutline &&
+        !isSecondary &&
+        !isWhite &&
+        (activate ? (
+          <LinearGradient
+            colors={['#FF3766', '#F58F95']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={[styles.button, style]}
+          >
+            <AppText color="white" weight="bold" size="md">
+              {title}
+            </AppText>
+          </LinearGradient>
+        ) : (
+          <View style={styles.button}>
+            <AppText color="white" weight="bold" size="md">
+              {title}
+            </AppText>
+          </View>
+        ))}
+
       {/* secondary */}
       {isSecondary && (
-        <View style={[styles.secondaryInner, !activate && styles.disabled]}>
-          <AppText color="primary1" weight="bold" size="md">
+        <View
+          style={[
+            styles.secondaryButton,
+            !activate && styles.secondaryDisabled,
+            style,
+          ]}
+        >
+          <AppText
+            color={activate ? 'primary1' : 'white'}
+            weight="bold"
+            size="md"
+          >
             {title}
           </AppText>
+          {icon && <View style={styles.iconWrapperRight}>{icon}</View>}
         </View>
       )}
 
       {/* white */}
       {isWhite && (
-        <View style={[styles.whiteInner, !activate && styles.disabled]}>
+        <View style={[styles.whiteInner, !activate && styles.disabled, style]}>
           <AppText color="primary1" weight="bold" size="md">
             {title}
           </AppText>
@@ -109,17 +129,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  secondaryInner: {
+  secondaryButton: {
+    borderRadius: 16,
     paddingVertical: 16,
+    paddingHorizontal: 16,
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: colors.redwhite,
+  },
+  secondaryDisabled: {
+    backgroundColor: colors.gray2,
   },
   whiteInner: {
+    borderRadius: 16,
     paddingVertical: 16,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: colors.white,
+  },
+  disabled: {
+    opacity: 0.5,
   },
   iconWrapper: {
     marginRight: 8,
+  },
+  iconWrapperRight: {
+    marginLeft: 8,
   },
 });
