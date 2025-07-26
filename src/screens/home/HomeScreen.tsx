@@ -79,10 +79,10 @@ export default function HomeScreen() {
           </View>
           <View style={{ flexDirection: 'column' }}>
             <AppText color="gray4" size="sm" weight="medium">
-              수술 관리 및 주치의 상담을 위해서는 병원과 연동이 필요해
+              수술 관리 및 주치의 상담을 위해서는 병원과 연동이 필요해요.
             </AppText>
             <AppText color="gray4" size="sm" weight="medium">
-              요. 연계 병원에서 상담 후 등록을 요청해주세요!
+              연계 병원에서 상담 후 등록을 요청해주세요!
             </AppText>
           </View>
         </View>
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     height: 32,
   },
   container: {
-    padding: 16,
+    padding: 20,
   },
   recordButton: {
     backgroundColor: colors.primary1,
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'flex-start',
     gap: 8,
-    padding: 16,
+    padding: 20,
   },
   hospitalBoxColumn: {
     flexDirection: 'row',

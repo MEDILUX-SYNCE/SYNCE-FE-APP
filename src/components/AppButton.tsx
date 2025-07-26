@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import {
   TouchableOpacity,
@@ -11,6 +12,7 @@ import { AppText } from './AppText';
 import { colors } from '../theme/color';
 
 type ButtonType = 'fill' | 'outline' | 'secondary' | 'white';
+type ButtonSize = 'large' | 'medium' | 'small';
 
 interface AppButtonProps {
   title: string;
@@ -19,6 +21,7 @@ interface AppButtonProps {
   style?: ViewStyle;
   type?: ButtonType;
   icon?: React.ReactNode;
+  size?: ButtonSize;
 }
 
 export const AppButton = ({
@@ -28,10 +31,25 @@ export const AppButton = ({
   style,
   type,
   icon,
+  size = 'large',
 }: AppButtonProps) => {
   const isOutline = type === 'outline';
   const isSecondary = type === 'secondary';
   const isWhite = type === 'white';
+
+  const getSizeStyle = (size: ButtonSize): ViewStyle => {
+    switch (size) {
+      case 'small':
+        return { width: 70, height: 48 };
+      case 'medium':
+        return { width: 240, height: 48 };
+      case 'large':
+      default:
+        return { width: 350, height: 48 };
+    }
+  };
+
+  const sizeStyle = getSizeStyle(size);
 
   return (
     <TouchableOpacity
@@ -42,10 +60,29 @@ export const AppButton = ({
     >
       {/* outline */}
       {isOutline && (
-        <View style={[styles.outlineButton, style]}>
+        <View style={[styles.outlineButton, sizeStyle, style]}>
           <View style={styles.outlineContent}>
             {icon && <View style={styles.iconWrapper}>{icon}</View>}
             <AppText color="black" weight="medium" size="md">
+              {title}
+            </AppText>
+          </View>
+        </View>
+      )}
+
+      {/* white */}
+      {isWhite && (
+        <View
+          style={[
+            styles.whiteInner,
+            sizeStyle,
+            !activate && styles.disabled,
+            style,
+          ]}
+        >
+          <View style={styles.outlineContent}>
+            {icon && <View style={styles.iconWrapper}>{icon}</View>}
+            <AppText color="primary1" weight="bold" size="md">
               {title}
             </AppText>
           </View>
@@ -61,14 +98,14 @@ export const AppButton = ({
             colors={['#FF3766', '#F58F95']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
-            style={[styles.button, style]}
+            style={[styles.button, sizeStyle, style]}
           >
             <AppText color="white" weight="bold" size="md">
               {title}
             </AppText>
           </LinearGradient>
         ) : (
-          <View style={styles.button}>
+          <View style={[styles.button, sizeStyle, style]}>
             <AppText color="white" weight="bold" size="md">
               {title}
             </AppText>
@@ -80,6 +117,7 @@ export const AppButton = ({
         <View
           style={[
             styles.secondaryButton,
+            sizeStyle,
             !activate && styles.secondaryDisabled,
             style,
           ]}
@@ -94,15 +132,6 @@ export const AppButton = ({
           {icon && <View style={styles.iconWrapperRight}>{icon}</View>}
         </View>
       )}
-
-      {/* white */}
-      {isWhite && (
-        <View style={[styles.whiteInner, !activate && styles.disabled, style]}>
-          <AppText color="primary1" weight="bold" size="md">
-            {title}
-          </AppText>
-        </View>
-      )}
     </TouchableOpacity>
   );
 };
@@ -111,13 +140,11 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.gray1,
     borderRadius: 16,
-    paddingVertical: 16,
     alignItems: 'center',
     justifyContent: 'center',
   },
   outlineButton: {
     borderRadius: 24,
-    paddingVertical: 8,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
@@ -131,7 +158,6 @@ const styles = StyleSheet.create({
   },
   secondaryButton: {
     borderRadius: 16,
-    paddingVertical: 16,
     paddingHorizontal: 16,
     flexDirection: 'row',
     alignItems: 'center',
@@ -143,7 +169,6 @@ const styles = StyleSheet.create({
   },
   whiteInner: {
     borderRadius: 16,
-    paddingVertical: 16,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.white,

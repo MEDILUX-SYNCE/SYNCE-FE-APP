@@ -1,35 +1,29 @@
-import {
-  Alert,
-  Dimensions,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import { Alert, Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { AppText } from '../components/AppText';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-
-const { width } = Dimensions.get('window');
 
 type TopNavigationProps = {
   title: string;
   hasBack?: boolean;
   hasDropdown?: boolean;
-  hasMenu?: boolean;
   onPressDropdown?: () => void;
-  onPressMenu?: () => void;
+  backIconType?: 'arrow' | 'cancel';
 };
 
 export const TopNavigation = ({
   title,
   hasBack = false,
   hasDropdown = false,
-  hasMenu = false,
   onPressDropdown,
-  onPressMenu,
+  backIconType,
 }: TopNavigationProps) => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const backIconSource =
+    backIconType === 'cancel'
+      ? require('../assets/images/icons/cancel.png')
+      : require('../assets/images/icons/leftArrow.png');
 
   return (
     <View style={styles.container}>
@@ -45,10 +39,7 @@ export const TopNavigation = ({
               }
             }}
           >
-            <Image
-              style={{ width: 32, height: 32 }}
-              source={require('../assets/images/icons/leftArrow.png')}
-            />
+            <Image style={{ width: 32, height: 32 }} source={backIconSource} />
           </TouchableOpacity>
         )}
       </View>
@@ -69,27 +60,17 @@ export const TopNavigation = ({
           </TouchableOpacity>
         )}
       </View>
-
-      {/* 오른쪽 (메뉴 아이콘) */}
-      <View style={styles.right}>
-        {hasMenu && (
-          <TouchableOpacity onPress={onPressMenu}>
-            <Image
-              style={{ width: 32, height: 32 }}
-              source={require('../assets/images/icons/menu.png')}
-            />
-          </TouchableOpacity>
-        )}
-      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    margin: 20,
+    gap: 16,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
   },
   left: {
     alignItems: 'flex-start',
@@ -98,9 +79,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-  },
-  right: {
-    width: width * 0.6,
-    alignItems: 'flex-end',
   },
 });

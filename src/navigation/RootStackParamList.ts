@@ -6,5 +6,8 @@ export type RootStackParamList = {
   Signup: undefined;
   Home: undefined;
   RecordProgress: undefined;
+  HospitalSearch: {
+    onSelect: (hospitalName: string) => void;
+  };
   Notifications: undefined;
 };
