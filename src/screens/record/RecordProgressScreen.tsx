@@ -21,25 +21,26 @@ import { RootStackParamList } from '../../navigation/RootStackParamList';
 import dayjs from 'dayjs';
 import SurgerySelectScreen from './surgery/SurgerySelectScreen';
 import SurgeryDateScreen from './date/SurgeryDateScreen';
+import HospitalSearchScreen from './hospital/HospitalSearchScreen';
 
 export default function RecordProgressScreen() {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [selectedSurgeries, setSelectedSurgeries] = useState<string[]>([]);
   const [modalVisible, setModalVisible] = useState(false);
+  const [selectedHospital, setSelectedHospital] = useState<string>('');
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [dateModalVisible, setDateModalVisible] = useState(false);
+  const [hospitalModalVisible, setHospitalModalVisible] = useState(false);
 
   const handleSelectSurgery = (selected: string[]) => {
     setSelectedSurgeries(selected);
-    setModalVisible(false);
   };
 
   return (
     <View style={styles.screen}>
       {/* 헤더 */}
       <TopNavigation title="기록장 추가" hasBack />
-
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={{ flex: 1 }}
@@ -62,7 +63,6 @@ export default function RecordProgressScreen() {
                 />
               </View>
             </TouchableOpacity>
-            {/* 태그 표시 */}
             <View style={styles.tagsContainer}>
               {selectedSurgeries.map((surgery, idx) => (
                 <View key={idx} style={styles.tag}>
@@ -107,7 +107,13 @@ export default function RecordProgressScreen() {
             <AppText color="black" weight="medium" size="md">
               수술 병원
             </AppText>
-            <AppInput placeholder="수술 병원 선택" editable={false} />
+            <TouchableOpacity onPress={() => setHospitalModalVisible(true)}>
+              <AppInput
+                placeholder="수술 병원 선택"
+                value={selectedHospital}
+                editable={false}
+              />
+            </TouchableOpacity>
           </View>
 
           {/* 주치의 성함 */}
@@ -149,6 +155,16 @@ export default function RecordProgressScreen() {
           setDateModalVisible(false);
         }}
         onReset={() => setSelectedDate(null)}
+      />
+
+      {/* 병원 선택 모달창 */}
+      <HospitalSearchScreen
+        visible={hospitalModalVisible}
+        onClose={() => setHospitalModalVisible(false)}
+        onSelect={name => {
+          setSelectedHospital(name);
+          setHospitalModalVisible(false);
+        }}
       />
     </View>
   );

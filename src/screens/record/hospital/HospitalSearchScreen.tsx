@@ -1,6 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+// hospital/HospitalSearchScreen.tsx
 import React, { useState } from 'react';
 import {
+  Modal,
   View,
   Text,
   StyleSheet,
@@ -8,27 +9,27 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
 import axios from 'axios';
-
 import { colors } from '../../../theme/color';
-import { TopNavigation } from '../../../navigation/TopNavigation';
 import { AppInput } from '../../../components/AppInput';
-import { RootStackParamList } from '../../../navigation/RootStackParamList';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 const Config = require('react-native-config');
 
 const { width } = Dimensions.get('window');
 
-type Navigation = NativeStackNavigationProp<RootStackParamList>;
+type HospitalSearchScreenProps = {
+  visible: boolean;
+  onClose: () => void;
+  onSelect: (name: string) => void;
+};
 
-export default function HospitalSearchScreen() {
+export default function HospitalSearchScreen({
+  visible,
+  onClose,
+  onSelect,
+}: HospitalSearchScreenProps) {
   const SERVICE_KEY = Config.SERVICE_KEY;
-  const route = useRoute();
-  const navigation = useNavigation<Navigation>();
   const [keyword, setKeyword] = useState('');
   const [results, setResults] = useState<any[]>([]);
-  const { onSelect } = route.params as { onSelect: (name: string) => void };
 
   const handleSearch = async () => {
     if (!keyword) return;
@@ -47,55 +48,68 @@ export default function HospitalSearchScreen() {
         },
       );
 
-      const items = response.data.response.body.items?.item;
-      setResults(Array.isArray(items) ? items : [items]);
+      console.log('SERVICE_KEY:', SERVICE_KEY);
+
+      console.log('API 응답:', JSON.stringify(response.data, null, 2));
+
+      const items = response.data?.response?.body?.items?.item;
+
+      if (!items) {
+        setResults([]);
+      } else if (Array.isArray(items)) {
+        setResults(items);
+      } else {
+        setResults([items]); // 단일 객체일 경우
+      }
     } catch (error) {
       console.warn('API 요청 실패:', error);
+      setResults([]); // 에러 시 결과 비우기
     }
   };
 
   return (
-    <View style={styles.screen}>
-      {/* 헤더 */}
-      <TopNavigation title="수술 병원 찾기" hasBack />
+    <Modal visible={visible} animationType="slide">
+      <View style={styles.screen}>
+        <View style={styles.inputContainer}>
+          <AppInput
+            placeholder="병원 이름을 검색해주세요."
+            value={keyword}
+            onChangeText={setKeyword}
+            onSubmitEditing={handleSearch}
+          />
+        </View>
 
-      {/* 검색 입력란 */}
-      <View style={styles.inputContainer}>
-        <AppInput
-          placeholder="병원 이름을 검색해주세요."
-          value={keyword}
-          onChangeText={setKeyword}
-          onSubmitEditing={handleSearch}
-        />
-      </View>
-
-      {/* 검색 결과 */}
-      <FlatList
-        data={results}
-        keyExtractor={item => item.ykiho}
-        renderItem={({ item }) => (
-          <View style={styles.resultItem}>
-            <View>
-              <Text style={styles.hospitalName}>{item.yadmNm}</Text>
-              <Text style={styles.hospitalAddr}>{item.addr}</Text>
+        <FlatList
+          data={results}
+          keyExtractor={item => item.ykiho}
+          renderItem={({ item }) => (
+            <View style={styles.resultItem}>
+              <View>
+                <Text style={styles.hospitalName}>{item.yadmNm}</Text>
+                <Text style={styles.hospitalAddr}>{item.addr}</Text>
+              </View>
+              <TouchableOpacity
+                style={styles.selectBtn}
+                onPress={() => {
+                  onSelect(item.yadmNm);
+                  onClose();
+                }}
+              >
+                <Text style={styles.selectText}>선택하기</Text>
+              </TouchableOpacity>
             </View>
-            <TouchableOpacity
-              style={styles.selectBtn}
-              onPress={() => {
-                onSelect(item.yadmNm);
-                navigation.goBack();
-              }}
-            >
-              <Text style={styles.selectText}>선택하기</Text>
-            </TouchableOpacity>
-          </View>
-        )}
-        ListEmptyComponent={
-          <Text style={styles.emptyText}>검색 결과가 없습니다.</Text>
-        }
-        contentContainerStyle={{ padding: 20 }}
-      />
-    </View>
+          )}
+          ListEmptyComponent={
+            <Text style={styles.emptyText}>검색 결과가 없습니다.</Text>
+          }
+          contentContainerStyle={{ padding: 20 }}
+        />
+
+        <TouchableOpacity onPress={onClose} style={{ padding: 20 }}>
+          <Text style={{ color: 'gray', textAlign: 'center' }}>닫기</Text>
+        </TouchableOpacity>
+      </View>
+    </Modal>
   );
 }
 
