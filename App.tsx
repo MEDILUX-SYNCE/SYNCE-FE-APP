@@ -19,7 +19,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Splash"
+        initialRouteName="Home"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="Splash" component={SplashScreen} />
@@ -29,7 +29,7 @@ export default function App() {
         <Stack.Screen name="Notifications" component={NotificationsScreen} />
         <Stack.Screen name="AccountSearch" component={AccountSearchScreen} />
         <Stack.Screen name="Signup" component={SignupScreen} />
-        <Stack.Screen name="RecordProgress" component={RecordProgressScreen} />
+        <Stack.Screen name="Record" component={RecordProgressScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
