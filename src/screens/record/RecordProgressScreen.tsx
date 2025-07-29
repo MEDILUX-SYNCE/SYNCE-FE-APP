@@ -19,8 +19,8 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/RootStackParamList';
 import dayjs from 'dayjs';
-import SurgerySelectModal from './surgery/SurgerySelectModal';
-import CustomStyledDatePicker from './date/CustomStyledDatePicker';
+import SurgerySelectScreen from './surgery/SurgerySelectScreen';
+import SurgeryDateScreen from './date/SurgeryDateScreen';
 
 export default function RecordProgressScreen() {
   const navigation =
@@ -131,7 +131,7 @@ export default function RecordProgressScreen() {
         </ScrollView>
 
         {/* 수술 선택 모달 */}
-        <SurgerySelectModal
+        <SurgerySelectScreen
           visible={modalVisible}
           selected={selectedSurgeries}
           onClose={() => setModalVisible(false)}
@@ -139,12 +139,12 @@ export default function RecordProgressScreen() {
         />
       </KeyboardAvoidingView>
 
-      {/* 닐짜 선택 모달창 */}
-      <CustomStyledDatePicker
+      {/* 날짜 선택 모달창 */}
+      <SurgeryDateScreen
         visible={dateModalVisible}
-        initialDate={selectedDate ?? new Date()}
+        initialDate={selectedDate}
         onCancel={() => setDateModalVisible(false)}
-        onConfirm={(date: React.SetStateAction<Date | null>) => {
+        onConfirm={date => {
           setSelectedDate(date);
           setDateModalVisible(false);
         }}

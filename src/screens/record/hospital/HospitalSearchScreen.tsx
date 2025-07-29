@@ -16,7 +16,7 @@ import { TopNavigation } from '../../../navigation/TopNavigation';
 import { AppInput } from '../../../components/AppInput';
 import { RootStackParamList } from '../../../navigation/RootStackParamList';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import Config from 'react-native-config';
+const Config = require('react-native-config');
 
 const { width } = Dimensions.get('window');
 

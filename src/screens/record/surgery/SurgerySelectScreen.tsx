@@ -20,7 +20,7 @@ type Props = {
   onConfirm: (selected: string[]) => void;
 };
 
-export default function SurgerySelectModal({
+export default function SurgerySelectScreen({
   visible,
   selected,
   onClose,
