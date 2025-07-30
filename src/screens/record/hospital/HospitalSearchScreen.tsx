@@ -12,6 +12,7 @@ import {
 import axios from 'axios';
 import { colors } from '../../../theme/color';
 import { AppInput } from '../../../components/AppInput';
+import { XMLParser } from 'fast-xml-parser';
 const Config = require('react-native-config');
 
 const { width } = Dimensions.get('window');
@@ -27,43 +28,35 @@ export default function HospitalSearchScreen({
   onClose,
   onSelect,
 }: HospitalSearchScreenProps) {
-  const SERVICE_KEY = Config.SERVICE_KEY;
+  //  const SERVICE_KEY = Config.SERVICE_KEY;
   const [keyword, setKeyword] = useState('');
   const [results, setResults] = useState<any[]>([]);
 
   const handleSearch = async () => {
     if (!keyword) return;
 
+    const SERVICE_KEY =
+      'MC1h4938TtXp1nuIE6%2F9QqHUBp%2BJqtdX3%2FEK%2BZT9ZeyiNvWlQGyN0%2FptcDTNgcS31KJ9qk1Fv6hlpw1WVPXYBQ%3D%3D';
+
     try {
-      const response = await axios.get(
-        'https://apis.data.go.kr/B551182/hospInfoServicev2/getHospBasisList',
-        {
-          params: {
-            ServiceKey: SERVICE_KEY,
-            yadmNm: keyword,
-            pageNo: 1,
-            numOfRows: 10,
-            _type: 'json',
-          },
-        },
-      );
+      const url = `https://apis.data.go.kr/B551182/hospInfoServicev2/getHospBasisList?ServiceKey=${SERVICE_KEY}&yadmNm=${encodeURIComponent(
+        keyword,
+      )}&pageNo=1&numOfRows=10`;
 
-      console.log('SERVICE_KEY:', SERVICE_KEY);
+      // 기본값: json
+      const response = await axios.get(url);
+      console.log('response:', response);
 
-      console.log('API 응답:', JSON.stringify(response.data, null, 2));
+      const result = response.data;
+      console.log('API 응답:', result);
 
-      const items = response.data?.response?.body?.items?.item;
-
-      if (!items) {
-        setResults([]);
-      } else if (Array.isArray(items)) {
-        setResults(items);
-      } else {
-        setResults([items]); // 단일 객체일 경우
-      }
+      const items = result?.response?.body?.items?.item;
+      setResults(Array.isArray(items) ? items : items ? [items] : []);
+      console.log('items:', items);
+      console.log('results 상태:', results);
     } catch (error) {
       console.warn('API 요청 실패:', error);
-      setResults([]); // 에러 시 결과 비우기
+      setResults([]);
     }
   };
 
@@ -124,18 +117,18 @@ const styles = StyleSheet.create({
   resultItem: {
     paddingVertical: 14,
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    borderBottomColor: colors.gray1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
   hospitalName: {
     fontSize: 16,
-    fontWeight: 'bold',
+    color: colors.gray4,
   },
   hospitalAddr: {
     fontSize: 13,
-    color: '#555',
+    color: colors.gray3,
     marginTop: 2,
   },
   selectBtn: {
