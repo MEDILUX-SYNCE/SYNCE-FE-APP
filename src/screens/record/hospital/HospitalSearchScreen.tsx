@@ -12,8 +12,9 @@ import {
 import axios from 'axios';
 import { colors } from '../../../theme/color';
 import { AppInput } from '../../../components/AppInput';
-import { XMLParser } from 'fast-xml-parser';
-const Config = require('react-native-config');
+import { fontSizes } from '../../../theme/fontSizes';
+import Config from 'react-native-config';
+console.log('Config.SERVICE_KEY: ', Config.SERVICE_KEY);
 
 const { width } = Dimensions.get('window');
 
@@ -28,28 +29,31 @@ export default function HospitalSearchScreen({
   onClose,
   onSelect,
 }: HospitalSearchScreenProps) {
-  //  const SERVICE_KEY = Config.SERVICE_KEY;
   const [keyword, setKeyword] = useState('');
   const [results, setResults] = useState<any[]>([]);
 
   const handleSearch = async () => {
     if (!keyword) return;
 
-    const SERVICE_KEY =
-      'MC1h4938TtXp1nuIE6%2F9QqHUBp%2BJqtdX3%2FEK%2BZT9ZeyiNvWlQGyN0%2FptcDTNgcS31KJ9qk1Fv6hlpw1WVPXYBQ%3D%3D';
+    const SERVICE_KEY = Config.SERVICE_KEY;
+    console.log('SERVICE_KEY:', SERVICE_KEY);
 
+    // API 요청
     try {
+      // 문자열로 직접 URL 구성
       const url = `https://apis.data.go.kr/B551182/hospInfoServicev2/getHospBasisList?ServiceKey=${SERVICE_KEY}&yadmNm=${encodeURIComponent(
         keyword,
       )}&pageNo=1&numOfRows=10`;
 
       // 기본값: json
-      const response = await axios.get(url);
+      const response = await axios.get(url, { responseType: 'json' });
       console.log('response:', response);
 
+      // 응답 데이터 확인
       const result = response.data;
       console.log('API 응답:', result);
 
+      // 결과가 없을 경우 빈 배열로 설정
       const items = result?.response?.body?.items?.item;
       setResults(Array.isArray(items) ? items : items ? [items] : []);
       console.log('items:', items);
@@ -97,10 +101,6 @@ export default function HospitalSearchScreen({
           }
           contentContainerStyle={{ padding: 20 }}
         />
-
-        <TouchableOpacity onPress={onClose} style={{ padding: 20 }}>
-          <Text style={{ color: 'gray', textAlign: 'center' }}>닫기</Text>
-        </TouchableOpacity>
       </View>
     </Modal>
   );
@@ -123,28 +123,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   hospitalName: {
-    fontSize: 16,
+    fontSize: fontSizes.md,
+    fontWeight: 'bold',
     color: colors.gray4,
   },
   hospitalAddr: {
-    fontSize: 13,
+    fontSize: fontSizes.sm,
+    fontWeight: 'medium',
     color: colors.gray3,
-    marginTop: 2,
+    marginTop: 4,
   },
   selectBtn: {
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderWidth: 1,
-    borderColor: colors.primary,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
     borderRadius: 16,
+    backgroundColor: colors.whitegrey,
   },
   selectText: {
-    fontSize: 12,
-    color: colors.primary,
+    fontSize: fontSizes.sm,
+    color: colors.gray4,
   },
   emptyText: {
     textAlign: 'center',
-    marginTop: 40,
-    color: '#999',
+    color: colors.gray3,
   },
 });
