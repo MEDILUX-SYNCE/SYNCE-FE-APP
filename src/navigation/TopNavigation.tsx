@@ -6,6 +6,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 type TopNavigationProps = {
   title: string;
+  hasCancel: boolean;
   hasBack?: boolean;
   hasDropdown?: boolean;
   onPressDropdown?: () => void;
@@ -14,6 +15,7 @@ type TopNavigationProps = {
 
 export const TopNavigation = ({
   title,
+  hasCancel = false,
   hasBack = false,
   hasDropdown = false,
   onPressDropdown,
@@ -65,6 +67,9 @@ export const TopNavigation = ({
 };
 
 const styles = StyleSheet.create({
+  header: {
+    padding: 16,
+  },
   container: {
     margin: 20,
     gap: 16,

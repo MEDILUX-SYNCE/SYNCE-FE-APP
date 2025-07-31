@@ -10,24 +10,36 @@
     "test": "jest"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@react-native-community/datetimepicker": "^8.4.2",
+=======
+    "@react-native-community/datetimepicker": "^8.4.3",
+>>>>>>> d3254a77198e42a0d443a4bdde403613add69825
     "@react-native/new-app-screen": "0.80.0",
     "@react-navigation/bottom-tabs": "^7.4.1",
     "@react-navigation/native": "^7.1.10",
     "@react-navigation/native-stack": "^7.3.14",
+<<<<<<< HEAD
     "axios": "^1.10.0",
     "date": "^2.0.6",
     "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",
     "fns": "^1.0.0",
+=======
+    "axios": "^1.11.0",
+    "date-fns": "^4.1.0",
+    "fast-xml-parser": "^5.2.5",
+>>>>>>> d3254a77198e42a0d443a4bdde403613add69825
     "react": "19.1.0",
     "react-native": "0.80.0",
+    "react-native-calendars": "^1.1313.0",
+    "react-native-config": "^1.5.5",
     "react-native-linear-gradient": "^2.8.3",
     "react-native-paper": "^5.14.5",
     "react-native-paper-dates": "^0.22.47",
     "react-native-safe-area-context": "^5.5.0",
     "react-native-screens": "^4.11.1",
-    "react-native-vector-icons": "^10.2.0",
+    "react-native-vector-icons": "^10.3.0",
     "react-navigation": "^5.0.0"
   },
   "devDependencies": {
@@ -49,6 +61,7 @@
     "eslint": "^8.19.0",
     "jest": "^29.6.3",
     "prettier": "2.8.8",
+    "react-native-dotenv": "^3.4.11",
     "react-test-renderer": "19.1.0",
     "typescript": "5.0.4"
   },

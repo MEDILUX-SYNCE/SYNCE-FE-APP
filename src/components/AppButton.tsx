@@ -6,19 +6,25 @@ import {
   GestureResponderEvent,
   ViewStyle,
   View,
+  Dimensions,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { AppText } from './AppText';
 import { colors } from '../theme/color';
 
 type ButtonType = 'fill' | 'outline' | 'secondary' | 'white';
+<<<<<<< HEAD
 type ButtonSize = 'large' | 'medium' | 'small';
+=======
+type ButtonSize = 'small' | 'medium' | 'large';
+>>>>>>> d3254a77198e42a0d443a4bdde403613add69825
 
 interface AppButtonProps {
   title: string;
   activate: boolean;
   onPress: (event: GestureResponderEvent) => void;
   style?: ViewStyle;
+  size?: ButtonSize;
   type?: ButtonType;
   icon?: React.ReactNode;
   size?: ButtonSize;
@@ -29,6 +35,7 @@ export const AppButton = ({
   activate,
   onPress,
   style,
+  size,
   type,
   icon,
   size = 'large',
@@ -37,6 +44,7 @@ export const AppButton = ({
   const isSecondary = type === 'secondary';
   const isWhite = type === 'white';
 
+<<<<<<< HEAD
   const getSizeStyle = (size: ButtonSize): ViewStyle => {
     switch (size) {
       case 'small':
@@ -51,16 +59,41 @@ export const AppButton = ({
 
   const sizeStyle = getSizeStyle(size);
 
+=======
+  // 반응형 사이즈
+  const { width, height } = Dimensions.get('window');
+
+  // 버튼 여백
+  const getSizeStyle = (): ViewStyle => {
+    switch (size) {
+      case 'small':
+        return { width: 0.2 * width, height: 0.06 * height };
+      case 'medium':
+        return { width: 0.7 * width, height: 0.06 * height };
+      case 'large':
+        return { width: 0.9 * width, height: 0.06 * height };
+      default:
+        return { width: 0.9 * width, height: 0.06 * height };
+    }
+  };
+
+>>>>>>> d3254a77198e42a0d443a4bdde403613add69825
   return (
     <TouchableOpacity
       disabled={!activate}
       onPress={onPress}
-      activeOpacity={0.85}
-      style={[!isOutline && !isSecondary && !isWhite && style]}
+      activeOpacity={0.5}
+      style={[
+        !isOutline && !isSecondary && !isWhite && getSizeStyle() && style,
+      ]}
     >
       {/* outline */}
       {isOutline && (
+<<<<<<< HEAD
         <View style={[styles.outlineButton, sizeStyle, style]}>
+=======
+        <View style={[styles.outlineButton, getSizeStyle(), style]}>
+>>>>>>> d3254a77198e42a0d443a4bdde403613add69825
           <View style={styles.outlineContent}>
             {icon && <View style={styles.iconWrapper}>{icon}</View>}
             <AppText color="black" weight="medium" size="md">
@@ -98,14 +131,22 @@ export const AppButton = ({
             colors={['#FF3766', '#F58F95']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
+<<<<<<< HEAD
             style={[styles.button, sizeStyle, style]}
+=======
+            style={[styles.button, style, , getSizeStyle()]}
+>>>>>>> d3254a77198e42a0d443a4bdde403613add69825
           >
             <AppText color="white" weight="bold" size="md">
               {title}
             </AppText>
           </LinearGradient>
         ) : (
+<<<<<<< HEAD
           <View style={[styles.button, sizeStyle, style]}>
+=======
+          <View style={[styles.button, getSizeStyle()]}>
+>>>>>>> d3254a77198e42a0d443a4bdde403613add69825
             <AppText color="white" weight="bold" size="md">
               {title}
             </AppText>
@@ -117,7 +158,11 @@ export const AppButton = ({
         <View
           style={[
             styles.secondaryButton,
+<<<<<<< HEAD
             sizeStyle,
+=======
+            getSizeStyle(),
+>>>>>>> d3254a77198e42a0d443a4bdde403613add69825
             !activate && styles.secondaryDisabled,
             style,
           ]}
@@ -129,9 +174,29 @@ export const AppButton = ({
           >
             {title}
           </AppText>
-          {icon && <View style={styles.iconWrapperRight}>{icon}</View>}
+          {icon && <View>{icon}</View>}
         </View>
       )}
+<<<<<<< HEAD
+=======
+
+      {/* white */}
+      {isWhite && (
+        <View
+          style={[
+            styles.whiteInner,
+            getSizeStyle(),
+            !activate && styles.disabled,
+            style,
+          ]}
+        >
+          {icon && <View>{icon}</View>}
+          <AppText color="primary1" weight="bold" size="md">
+            {title}
+          </AppText>
+        </View>
+      )}
+>>>>>>> d3254a77198e42a0d443a4bdde403613add69825
     </TouchableOpacity>
   );
 };
@@ -168,6 +233,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.gray2,
   },
   whiteInner: {
+    flexDirection: 'row',
     borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
@@ -178,8 +244,5 @@ const styles = StyleSheet.create({
   },
   iconWrapper: {
     marginRight: 8,
-  },
-  iconWrapperRight: {
-    marginLeft: 8,
   },
 });

@@ -72,5 +72,3 @@ vendor/bundle/
 
 # Env
 .env
-.env.local
-.env.*.local
