@@ -25,10 +25,11 @@ const BottomTabNavigator = () => {
           position: 'absolute',
           height: responsiveHeight,
           backgroundColor: colors.white,
+          borderWidth: 1,
           borderColor: colors.redwhite3,
           borderRadius: 16,
           shadowColor: '#FFE2E7',
-          shadowOpacity: 20,
+          shadowOpacity: 24,
           shadowOffset: {
             width: 0,
             height: 0,
