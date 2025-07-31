@@ -48,10 +48,8 @@ const notifications = [
 export default function NotificationsScreen() {
   return (
     <View style={{ flex: 1, backgroundColor: colors.white }}>
-      <View style={styles.header}>
-        {/* 뒤로가기 & 메뉴 헤더 */}
-        <TopNavigation title={'알림'} hasBack hasMenu />
-      </View>
+      {/* 헤더 */}
+      <TopNavigation title={'알림'} hasBack hasCancel={false} />
 
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -113,9 +111,6 @@ export default function NotificationsScreen() {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    padding: 16,
-  },
   cardContainer: {
     borderBottomWidth: 1,
     borderBottomColor: colors.gray1,

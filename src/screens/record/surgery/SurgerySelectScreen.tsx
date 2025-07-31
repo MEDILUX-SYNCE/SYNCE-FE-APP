@@ -48,7 +48,12 @@ export default function SurgerySelectScreen({
     <Modal visible={visible} animationType="slide">
       <View style={styles.modal}>
         {/* 헤더 */}
-        <TopNavigation title="수술 종류 선택" hasBack onPressMenu={onClose} />
+        <TopNavigation
+          title="수술 종류 선택"
+          hasBack
+          onPressMenu={onClose}
+          hasCancel={false}
+        />
 
         {/* 내용 */}
         <ScrollView contentContainerStyle={styles.content}>
