@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
     height: 32,
   },
   container: {
-    padding: 16,
+    padding: 20,
   },
   recordButton: {
     backgroundColor: colors.primary1,
@@ -281,6 +281,44 @@ const styles = StyleSheet.create({
   warningBox: {
     alignItems: 'flex-end',
     marginBottom: 24,
+  },
+  doctorBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+    borderWidth: 1,
+    borderColor: colors.gray1,
+    borderRadius: 12,
+  },
+  hospitalBoxContainer: {
+    marginHorizontal: 16,
+    borderWidth: 1,
+    borderRadius: 16,
+    borderColor: colors.gray1,
+  },
+  hospitalBox: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: 8,
+    padding: 20,
+  },
+  hospitalBoxColumn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 12,
+    marginHorizontal: 12,
+    borderBottomWidth: 1,
+    borderBlockColor: colors.gray1,
+  },
+  doctorImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+  },
+  hospitalImage: {
+    width: 45,
+    height: 45,
+    borderRadius: 4,
   },
   buttonContainer: { paddingVertical: 16 },
   moreButtonContainer: {

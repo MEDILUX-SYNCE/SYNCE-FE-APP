@@ -48,7 +48,7 @@ const notifications = [
 export default function NotificationsScreen() {
   return (
     <View style={{ flex: 1, backgroundColor: colors.white }}>
-      {/* 헤더 */}
+      {/* 뒤로가기 & 메뉴 헤더 */}
       <TopNavigation title={'알림'} hasBack hasCancel={false} />
 
       <KeyboardAvoidingView
