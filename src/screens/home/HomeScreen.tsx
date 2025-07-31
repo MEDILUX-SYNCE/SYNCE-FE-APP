@@ -11,12 +11,23 @@ import { colors } from '../../theme/color';
 import { AppButton } from '../../components/AppButton';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { RootStackParamList } from '../../navigation/RootStackParamList';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+// 탭 이름들을 정의해주는 타입
+export type BottomTabParamList = {
+  홈: undefined;
+  기록: undefined;
+  아티클: undefined;
+  내정보: undefined;
+};
 
 export default function HomeScreen() {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const tabNavigation =
+    useNavigation<BottomTabNavigationProp<BottomTabParamList>>();
   return (
     <View style={{ flex: 1 }}>
       {/* 헤더 */}

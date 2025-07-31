@@ -7,16 +7,38 @@ import ArticleScreen from '../screens/article/ArticleScreen';
 import MyScreen from '../screens/my/MyScreen';
 import { Image } from 'react-native';
 import HomeScreen from '../screens/home/HomeScreen';
+import { colors } from '../theme/color';
+import { fontSizes } from '../theme/fontSizes';
 
-const Tab = createBottomTabNavigator();
+// 탭 이름들을 정의해주는 타입
+export type BottomTabParamList = {
+  홈: undefined;
+  기록: undefined;
+  아티클: undefined;
+  내정보: undefined;
+};
 
+// 타입을 BottomTabNavigator 에 연결
+const Tab = createBottomTabNavigator<BottomTabParamList>();
+
+// BottomTabNavigator
 const BottomTabNavigator = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: colors.primary1,
+        tabBarInactiveTintColor: colors.gray3,
+        tabBarLabelStyle: {
+          fontSize: fontSizes.sm,
+          fontWeight: 'medium',
+        },
+      }}
+    >
       <Tab.Screen
         name="홈"
         component={HomeScreen}
         options={{
+          headerShown: false, // 상단 헤더 제거
           tabBarIcon: ({ focused }) =>
             focused ? (
               <Image
@@ -35,6 +57,7 @@ const BottomTabNavigator = () => {
         name="기록"
         component={RecordScreen}
         options={{
+          headerShown: false,
           tabBarIcon: ({ focused }) =>
             focused ? (
               <Image
@@ -53,6 +76,7 @@ const BottomTabNavigator = () => {
         name="아티클"
         component={ArticleScreen}
         options={{
+          headerShown: false,
           tabBarIcon: ({ focused }) =>
             focused ? (
               <Image
@@ -71,6 +95,7 @@ const BottomTabNavigator = () => {
         name="내정보"
         component={MyScreen}
         options={{
+          headerShown: false,
           tabBarIcon: ({ focused }) =>
             focused ? (
               <Image
