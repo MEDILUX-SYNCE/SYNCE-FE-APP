@@ -13,11 +13,7 @@ import { AppText } from './AppText';
 import { colors } from '../theme/color';
 
 type ButtonType = 'fill' | 'outline' | 'secondary' | 'white';
-<<<<<<< HEAD
-type ButtonSize = 'large' | 'medium' | 'small';
-=======
 type ButtonSize = 'small' | 'medium' | 'large';
->>>>>>> d3254a77198e42a0d443a4bdde403613add69825
 
 interface AppButtonProps {
   title: string;
@@ -27,7 +23,6 @@ interface AppButtonProps {
   size?: ButtonSize;
   type?: ButtonType;
   icon?: React.ReactNode;
-  size?: ButtonSize;
 }
 
 export const AppButton = ({
@@ -38,28 +33,11 @@ export const AppButton = ({
   size,
   type,
   icon,
-  size = 'large',
 }: AppButtonProps) => {
   const isOutline = type === 'outline';
   const isSecondary = type === 'secondary';
   const isWhite = type === 'white';
 
-<<<<<<< HEAD
-  const getSizeStyle = (size: ButtonSize): ViewStyle => {
-    switch (size) {
-      case 'small':
-        return { width: 70, height: 48 };
-      case 'medium':
-        return { width: 240, height: 48 };
-      case 'large':
-      default:
-        return { width: 350, height: 48 };
-    }
-  };
-
-  const sizeStyle = getSizeStyle(size);
-
-=======
   // 반응형 사이즈
   const { width, height } = Dimensions.get('window');
 
@@ -77,7 +55,6 @@ export const AppButton = ({
     }
   };
 
->>>>>>> d3254a77198e42a0d443a4bdde403613add69825
   return (
     <TouchableOpacity
       disabled={!activate}
@@ -89,11 +66,7 @@ export const AppButton = ({
     >
       {/* outline */}
       {isOutline && (
-<<<<<<< HEAD
-        <View style={[styles.outlineButton, sizeStyle, style]}>
-=======
         <View style={[styles.outlineButton, getSizeStyle(), style]}>
->>>>>>> d3254a77198e42a0d443a4bdde403613add69825
           <View style={styles.outlineContent}>
             {icon && <View style={styles.iconWrapper}>{icon}</View>}
             <AppText color="black" weight="medium" size="md">
@@ -105,14 +78,7 @@ export const AppButton = ({
 
       {/* white */}
       {isWhite && (
-        <View
-          style={[
-            styles.whiteInner,
-            sizeStyle,
-            !activate && styles.disabled,
-            style,
-          ]}
-        >
+        <View style={[styles.whiteInner, !activate && styles.disabled, style]}>
           <View style={styles.outlineContent}>
             {icon && <View style={styles.iconWrapper}>{icon}</View>}
             <AppText color="primary1" weight="bold" size="md">
@@ -131,22 +97,14 @@ export const AppButton = ({
             colors={['#FF3766', '#F58F95']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
-<<<<<<< HEAD
-            style={[styles.button, sizeStyle, style]}
-=======
             style={[styles.button, style, , getSizeStyle()]}
->>>>>>> d3254a77198e42a0d443a4bdde403613add69825
           >
             <AppText color="white" weight="bold" size="md">
               {title}
             </AppText>
           </LinearGradient>
         ) : (
-<<<<<<< HEAD
-          <View style={[styles.button, sizeStyle, style]}>
-=======
           <View style={[styles.button, getSizeStyle()]}>
->>>>>>> d3254a77198e42a0d443a4bdde403613add69825
             <AppText color="white" weight="bold" size="md">
               {title}
             </AppText>
@@ -158,11 +116,7 @@ export const AppButton = ({
         <View
           style={[
             styles.secondaryButton,
-<<<<<<< HEAD
-            sizeStyle,
-=======
             getSizeStyle(),
->>>>>>> d3254a77198e42a0d443a4bdde403613add69825
             !activate && styles.secondaryDisabled,
             style,
           ]}
@@ -177,8 +131,6 @@ export const AppButton = ({
           {icon && <View>{icon}</View>}
         </View>
       )}
-<<<<<<< HEAD
-=======
 
       {/* white */}
       {isWhite && (
@@ -196,7 +148,6 @@ export const AppButton = ({
           </AppText>
         </View>
       )}
->>>>>>> d3254a77198e42a0d443a4bdde403613add69825
     </TouchableOpacity>
   );
 };
