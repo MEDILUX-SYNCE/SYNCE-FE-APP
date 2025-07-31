@@ -5,18 +5,50 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import RecordScreen from '../screens/record/RecordScreen';
 import ArticleScreen from '../screens/article/ArticleScreen';
 import MyScreen from '../screens/my/MyScreen';
-import { Image } from 'react-native';
-import HomeScreen from '../screens/home/HomeScreen';
+import { Dimensions, Image } from 'react-native';
+import HomeScreen, { BottomTabParamList } from '../screens/home/HomeScreen';
+import { colors } from '../theme/color';
+import { fontSizes } from '../theme/fontSizes';
 
-const Tab = createBottomTabNavigator();
+// 반응형 높이
+const height = Dimensions.get('window').height;
+const responsiveHeight = height * 0.13;
+
+// 타입을 BottomTabNavigator 에 연결
+const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 const BottomTabNavigator = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: {
+          position: 'absolute',
+          height: responsiveHeight,
+          backgroundColor: colors.white,
+          borderWidth: 1,
+          borderColor: colors.redwhite3,
+          borderRadius: 16,
+          shadowColor: '#FFE2E7',
+          shadowOpacity: 24,
+          shadowOffset: {
+            width: 0,
+            height: 0,
+          },
+          elevation: 10,
+        },
+        tabBarActiveTintColor: colors.primary1,
+        tabBarInactiveTintColor: colors.gray3,
+        tabBarLabelStyle: {
+          fontSize: fontSizes.sm,
+          fontWeight: 'medium',
+        },
+      }}
+    >
       <Tab.Screen
         name="홈"
         component={HomeScreen}
         options={{
+          headerShown: false, // 상단 헤더 제거
           tabBarIcon: ({ focused }) =>
             focused ? (
               <Image
@@ -35,6 +67,7 @@ const BottomTabNavigator = () => {
         name="기록"
         component={RecordScreen}
         options={{
+          headerShown: false,
           tabBarIcon: ({ focused }) =>
             focused ? (
               <Image
@@ -53,6 +86,7 @@ const BottomTabNavigator = () => {
         name="아티클"
         component={ArticleScreen}
         options={{
+          headerShown: false,
           tabBarIcon: ({ focused }) =>
             focused ? (
               <Image
@@ -71,6 +105,7 @@ const BottomTabNavigator = () => {
         name="내정보"
         component={MyScreen}
         options={{
+          headerShown: false,
           tabBarIcon: ({ focused }) =>
             focused ? (
               <Image
