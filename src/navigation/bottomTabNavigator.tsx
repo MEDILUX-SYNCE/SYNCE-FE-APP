@@ -5,27 +5,36 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import RecordScreen from '../screens/record/RecordScreen';
 import ArticleScreen from '../screens/article/ArticleScreen';
 import MyScreen from '../screens/my/MyScreen';
-import { Image } from 'react-native';
-import HomeScreen from '../screens/home/HomeScreen';
+import { Dimensions, Image } from 'react-native';
+import HomeScreen, { BottomTabParamList } from '../screens/home/HomeScreen';
 import { colors } from '../theme/color';
 import { fontSizes } from '../theme/fontSizes';
 
-// 탭 이름들을 정의해주는 타입
-export type BottomTabParamList = {
-  홈: undefined;
-  기록: undefined;
-  아티클: undefined;
-  내정보: undefined;
-};
+// 반응형 높이
+const height = Dimensions.get('window').height;
+const responsiveHeight = height * 0.13;
 
 // 타입을 BottomTabNavigator 에 연결
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
-// BottomTabNavigator
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
+        tabBarStyle: {
+          position: 'absolute',
+          height: responsiveHeight,
+          backgroundColor: colors.white,
+          borderColor: colors.redwhite3,
+          borderRadius: 16,
+          shadowColor: '#FFE2E7',
+          shadowOpacity: 20,
+          shadowOffset: {
+            width: 0,
+            height: 0,
+          },
+          elevation: 10,
+        },
         tabBarActiveTintColor: colors.primary1,
         tabBarInactiveTintColor: colors.gray3,
         tabBarLabelStyle: {
