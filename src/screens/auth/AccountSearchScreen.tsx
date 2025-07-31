@@ -90,7 +90,7 @@ export default function AccountSearchScreen() {
                 </View>
               </View>
 
-              <View style={styles.loginButtonContainer}>
+              <View>
                 <AppButton
                   title={'로그인하기'}
                   onPress={() => navigation.navigate('Login')}
@@ -158,7 +158,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: colors.black,
   },
-  loginButtonContainer: {},
   contentContainer: {
     gap: 8,
   },

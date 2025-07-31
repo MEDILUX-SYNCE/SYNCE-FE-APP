@@ -5,6 +5,6 @@ export type RootStackParamList = {
   AccountSearch: undefined;
   Signup: undefined;
   Home: undefined;
-  RecordProgress: undefined;
+  Record: undefined;
   Notifications: undefined;
 };

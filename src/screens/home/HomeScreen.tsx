@@ -59,7 +59,7 @@ export default function HomeScreen() {
               type="white"
               activate={true}
               onPress={() => {
-                navigation.navigate('RecordProgress');
+                navigation.navigate('Record');
               }}
             />
           </View>
