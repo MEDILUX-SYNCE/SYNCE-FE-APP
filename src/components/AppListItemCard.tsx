@@ -8,7 +8,7 @@ const { width } = Dimensions.get('window');
 
 type AppListItemCardProps = {
   primaryTitle?: string;
-  title: string;
+  title?: string;
   subTitle?: string;
   items: {
     icon: React.ReactNode;
@@ -16,7 +16,7 @@ type AppListItemCardProps = {
     subText?: string;
     rightIcon?: React.ReactNode;
   }[];
-  borderColor: string;
+  borderColor?: string;
   onPress?: () => void;
 };
 export const AppListItemCard = ({

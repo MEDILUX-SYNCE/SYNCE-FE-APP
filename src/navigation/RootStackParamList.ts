@@ -12,4 +12,7 @@ export type RootStackParamList = {
   };
   Record: undefined;
   Notifications: undefined;
+  Account: undefined;
+  Notice: undefined;
+  Alert: undefined;
 };

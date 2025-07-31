@@ -61,7 +61,7 @@ export default function HospitalSearchScreen() {
   return (
     <View style={styles.screen}>
       {/* 헤더 */}
-      <TopNavigation title="수술 병원 찾기" hasBack />
+      <TopNavigation title="수술 병원 찾기" hasBack hasCancel={false} />
 
       {/* 검색 입력란 */}
       <View style={styles.inputContainer}>
