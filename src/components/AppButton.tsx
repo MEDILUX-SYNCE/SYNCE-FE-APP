@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import {
   TouchableOpacity,
@@ -76,18 +75,6 @@ export const AppButton = ({
         </View>
       )}
 
-      {/* white */}
-      {isWhite && (
-        <View style={[styles.whiteInner, !activate && styles.disabled, style]}>
-          <View style={styles.outlineContent}>
-            {icon && <View style={styles.iconWrapper}>{icon}</View>}
-            <AppText color="primary1" weight="bold" size="md">
-              {title}
-            </AppText>
-          </View>
-        </View>
-      )}
-
       {/* fill */}
       {!isOutline &&
         !isSecondary &&
@@ -156,11 +143,13 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.gray1,
     borderRadius: 16,
+    paddingVertical: 16,
     alignItems: 'center',
     justifyContent: 'center',
   },
   outlineButton: {
     borderRadius: 24,
+    paddingVertical: 8,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
@@ -174,6 +163,7 @@ const styles = StyleSheet.create({
   },
   secondaryButton: {
     borderRadius: 16,
+    paddingVertical: 16,
     paddingHorizontal: 16,
     flexDirection: 'row',
     alignItems: 'center',
@@ -186,6 +176,7 @@ const styles = StyleSheet.create({
   whiteInner: {
     flexDirection: 'row',
     borderRadius: 16,
+    paddingVertical: 16,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.white,
