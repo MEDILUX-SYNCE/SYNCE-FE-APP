@@ -66,7 +66,7 @@ export default function RecordProgressScreen() {
           <View style={styles.tagsContainer}>
             {selectedSurgeries.map((surgery, idx) => (
               <View key={idx} style={styles.tag}>
-                <AppText color="primary" size="bold" weight="medium">
+                <AppText color="primary" size="md" weight="bold">
                   {surgery}
                 </AppText>
                 <AppText
