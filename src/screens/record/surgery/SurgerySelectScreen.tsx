@@ -51,7 +51,6 @@ export default function SurgerySelectScreen({
         <TopNavigation
           title="수술 종류 선택"
           hasBack
-          onPressMenu={onClose}
           hasCancel={false}
         />
 
