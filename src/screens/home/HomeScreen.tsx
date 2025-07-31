@@ -105,7 +105,7 @@ export default function HomeScreen() {
             icon: (
               <Image
                 style={{ width: 45, height: 45 }}
-                source={require('../../assets/images/icons/checklist_sunglass.png')}
+                source={require('../../assets/images/icons/checklist_walk.png')}
               />
             ),
             text: '가벼운 산책',
@@ -120,7 +120,7 @@ export default function HomeScreen() {
             icon: (
               <Image
                 style={{ width: 45, height: 45 }}
-                source={require('../../assets/images/icons/checklist_sunglass.png')}
+                source={require('../../assets/images/icons/checklist_medicine.png')}
               />
             ),
             text: '처방약 복용',
@@ -135,7 +135,7 @@ export default function HomeScreen() {
             icon: (
               <Image
                 style={{ width: 45, height: 45 }}
-                source={require('../../assets/images/icons/checklist_sunglass.png')}
+                source={require('../../assets/images/icons/checklist_wafer.png')}
               />
             ),
             text: '웨이퍼 착용',
