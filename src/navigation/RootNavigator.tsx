@@ -13,6 +13,7 @@ import LoginScreen from '../screens/auth/LoginScreen';
 import NewPasswordScreen from '../screens/my/account/password/newpassword/NewPasswordScreen';
 import OnboardingScreen from '../screens/onboarding/OnboardingScreen';
 import SplashScreen from '../screens/onboarding/SplashScreen';
+import SignupScreen from '../screens/auth/SignupScreen';
 
 // Stack 전역 네비게이션 (앱 전체에서의 흐름 관리용)
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -30,6 +31,7 @@ const RootNavigator = () => {
         component={withAppLayout(OnboardingScreen)}
       />
       <Stack.Screen name="Login" component={withAppLayout(LoginScreen)} />
+      <Stack.Screen name="Signup" component={withAppLayout(SignupScreen)} />
       <Stack.Screen
         name="Notifications"
         component={withAppLayout(NotificationsScreen)}

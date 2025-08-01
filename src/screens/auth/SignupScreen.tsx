@@ -2,7 +2,6 @@
 import {
   Dimensions,
   Image,
-  StyleSheet,
   TextInput,
   TouchableOpacity,
   View,
@@ -18,6 +17,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { AppInput } from '../../components/AppInput';
 import { AppModal } from '../../components/AppModal';
+import { styles } from './styles';
 
 const { width, height } = Dimensions.get('window');
 
@@ -254,33 +254,16 @@ export default function SignupScreen() {
     <View key="step1">
       <View style={{ marginVertical: 16 }}>
         <AppText color="black" size="lg" weight="bold">
-          로그인에 사용할
-        </AppText>
-        <AppText color="black" size="lg" weight="bold">
-          이메일을 인증해주세요.
+          실명을 입력해주세요.
         </AppText>
         <View style={{ marginTop: 24, marginBottom: 32 }}>
           <AppInput
-            placeholder="이메일 입력"
-            value={email}
+            placeholder="실명 입력"
+            value={name}
             onChangeText={text => {
               const cleanedText = text.trim().replace(/\s+/g, '');
-              setEmail(cleanedText);
-              if (cleanedText.length > 0) {
-                setEmailError(false);
-              }
+              setName(cleanedText);
             }}
-            onBlur={() => {
-              if (email.length === 0) {
-                setEmailError(true);
-              }
-            }}
-            isError={emailError}
-            errorText={
-              emailError
-                ? '아이디는 6~12자의 영문, 숫자, -, _만 사용 가능합니다'
-                : undefined
-            }
           />
         </View>
       </View>
@@ -588,59 +571,3 @@ export default function SignupScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    padding: width * 0.05,
-    backgroundColor: colors.white,
-  },
-  stepIndicator: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginVertical: 16,
-  },
-  stepLine: {
-    width: width * 0.125,
-    height: 2,
-    backgroundColor: colors.whitegray,
-  },
-  stepDotActive: {
-    backgroundColor: colors.primary1,
-  },
-  divider: {
-    height: 1,
-    backgroundColor: colors.gray1,
-    marginVertical: 12,
-  },
-  agreementItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 8,
-  },
-  label: {
-    fontSize: 14,
-    marginLeft: 8,
-    color: colors.black,
-  },
-  boldLabel: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  highlightLabel: {
-    color: colors.primary1,
-  },
-  checkboxBase: {
-    width: 16,
-    height: 16,
-    borderWidth: 2,
-    borderColor: colors.gray3,
-    borderRadius: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  checkboxChecked: {
-    backgroundColor: colors.primary1,
-    borderWidth: 0,
-  },
-});

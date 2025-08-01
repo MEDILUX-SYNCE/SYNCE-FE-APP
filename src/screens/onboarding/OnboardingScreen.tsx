@@ -45,7 +45,8 @@ export default function OnboardingScreen() {
     RootStackParamList,
     'Onboarding'
   >;
-  const navigation = useNavigation<OnboardingScreenNavigationProp>();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   // useRef(): 컴포넌트 내부에서 특정 DOM 또는 React Native 컴포넌트 인스턴스를 기억하고 제어하는 Hook
   const flatListRef = useRef<FlatList>(null);
@@ -79,7 +80,7 @@ export default function OnboardingScreen() {
 
   const handNext = (index: number) => {
     if (index === TitleData.length - 1) {
-      navigation.replace('Login');
+      navigation.navigate('Signup');
     } else {
       flatListRef.current?.scrollToIndex({ index: index + 1 });
     }
