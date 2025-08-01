@@ -6,7 +6,7 @@ export const grayscale = {
   gray3: '#ADB1BA',
   gray2: '#DCDEE3',
   gray1: '#E5E6EB',
-  whitegrey: '#F2F3F7',
+  whitegray: '#F2F3F7',
   white: '#FFFFFF',
 };
 

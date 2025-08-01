@@ -235,7 +235,7 @@ export default function SurgerySelectModal({
   return (
     <Modal visible={visible} animationType="slide">
       <View style={styles.modal}>
-        <TopNavigation title="수술 종류 선택" hasBack />
+        <TopNavigation title="수술 종류 선택" hasBack hasCancel={false} />
         <ScrollView contentContainerStyle={styles.content}>
           {SURGERY_CATEGORIES.map(category => (
             <View key={category.name} style={styles.categoryContainer}>
@@ -376,7 +376,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   subItem: {
-    backgroundColor: colors.whitegrey,
+    backgroundColor: colors.whitegray,
     borderRadius: 16,
     paddingHorizontal: 12,
     paddingVertical: 6,

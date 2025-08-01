@@ -33,7 +33,7 @@ export default function LoginScreen() {
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
         <ScrollView contentContainerStyle={styles.scroll}>
-          <TopNavigation title="로그인" hasBack />
+          <TopNavigation title="로그인" hasBack hasCancel={false} />
 
           <AppText
             size="lg"

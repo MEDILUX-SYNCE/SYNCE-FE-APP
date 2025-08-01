@@ -237,13 +237,15 @@ export default function SignupScreen() {
           title={'서비스 이용약관'}
           content={'대충 서비스 이용약관 내용입니다.'}
           visible={agreeServiceModal}
-          onClose={() => setAgreeServiceModal(false)}
+          onConfirm={() => setAgreeServiceModal(false)}
+          onCancel={() => setAgreeServiceModal(false)}
         />
         <AppModal
           title={'개인정보 수집이용'}
           content={'대충 개인정보 수집이용 내용입니다.'}
           visible={agreePrivacyModal}
-          onClose={() => setAgreePrivacyModal(false)}
+          onConfirm={() => setAgreePrivacyModal(false)}
+          onCancel={() => setAgreePrivacyModal(false)}
         />
       </View>
     </View>,
@@ -414,7 +416,6 @@ export default function SignupScreen() {
               const cleanedText = text.trim().replace(/\s+/g, '');
               setPasswordCheck(cleanedText);
             }}
-            containerStyle={{ marginTop: 16, marginBottom: 32 }}
           />
         </View>
       </View>
@@ -518,7 +519,7 @@ export default function SignupScreen() {
   return (
     <View style={styles.screen}>
       {/* 헤더 */}
-      <TopNavigation title={'회원가입'} hasBack />
+      <TopNavigation title={'회원가입'} hasBack hasCancel={false} />
       <View style={styles.stepIndicator}>
         {steps.map((_, index) => (
           <View
@@ -602,7 +603,7 @@ const styles = StyleSheet.create({
   stepLine: {
     width: width * 0.125,
     height: 2,
-    backgroundColor: colors.whitegrey,
+    backgroundColor: colors.whitegray,
   },
   stepDotActive: {
     backgroundColor: colors.primary1,

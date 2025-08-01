@@ -39,7 +39,7 @@ export default function AccountSearchScreen() {
 
   return (
     <View style={styles.screen}>
-      <TopNavigation title={'아이디/비밀번호 찾기'} hasBack />
+      <TopNavigation title={'아이디/비밀번호 찾기'} hasBack hasCancel={false} />
 
       {/* 탭 메뉴 */}
       <View style={styles.tapContainer}>
@@ -109,7 +109,6 @@ export default function AccountSearchScreen() {
                 placeholder="휴대폰 번호 입력"
                 value={phoneNumber}
                 onChangeText={setPhoneNumber}
-                containerStyle={{ marginTop: 16, marginBottom: 32 }}
               />
               <AppButton
                 title={'아이디 찾기'}
@@ -124,7 +123,6 @@ export default function AccountSearchScreen() {
               placeholder="이메일 입력"
               value={email}
               onChangeText={setEmail}
-              containerStyle={{ marginTop: 16, marginBottom: 32 }}
             />
             <AppButton
               title={'임시번호 전송'}

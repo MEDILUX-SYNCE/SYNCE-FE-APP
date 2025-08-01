@@ -67,11 +67,9 @@ export const TopNavigation = ({
 };
 
 const styles = StyleSheet.create({
-  header: {
-    padding: 16,
-  },
   container: {
-    margin: 20,
+    marginHorizontal: 16,
+    marginVertical: 14,
     gap: 16,
     flexDirection: 'row',
     alignItems: 'center',
