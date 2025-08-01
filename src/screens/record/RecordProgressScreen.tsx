@@ -37,7 +37,7 @@ export default function RecordProgressScreen() {
   return (
     <View style={styles.screen}>
       {/* 헤더 */}
-      <TopNavigation title="기록장 추가" hasCancel={true} />
+      <TopNavigation title="기록장 추가" hasBack hasCancel={true} />
 
       {/* 스크롤뷰 */}
       <ScrollView
@@ -168,4 +168,3 @@ export default function RecordProgressScreen() {
     </View>
   );
 }
-
