@@ -19,6 +19,8 @@ export default function AccountScreen() {
       <TopNavigation title={'내 정보 관리'} hasBack hasCancel={false} />
       <AppListItemCard
         borderColor={colors.white}
+        shadowColor={colors.white}
+        padding={8}
         items={[
           {
             icon: (
