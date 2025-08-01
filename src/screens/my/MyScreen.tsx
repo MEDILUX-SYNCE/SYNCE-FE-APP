@@ -44,6 +44,7 @@ export default function MyScreen() {
               rightIcon: (
                 <AppButton
                   title={'관리'}
+                  type="gray"
                   size="small"
                   activate
                   onPress={() => navigation.navigate('Account')}

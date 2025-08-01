@@ -175,6 +175,7 @@ export default function HomeScreen() {
             rightIcon: (
               <AppButton
                 size="small"
+                type="gray"
                 title={'상담하기'}
                 activate
                 onPress={() => Alert.alert('상담하기 버튼 누름!')}

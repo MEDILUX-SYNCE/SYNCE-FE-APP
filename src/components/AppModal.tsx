@@ -1,5 +1,6 @@
 import {
   Dimensions,
+  Image,
   Modal,
   StyleSheet,
   TouchableOpacity,
@@ -15,27 +16,48 @@ interface AppModalProps {
   title: string;
   content: string;
   visible: boolean;
-  onClose: () => void;
+  onConfirm: () => void;
+  onCancel: () => void;
 }
 
 export const AppModal = ({
   title,
   content,
   visible,
-  onClose,
+  onConfirm,
+  onCancel,
 }: AppModalProps) => {
   return (
     <Modal visible={visible} transparent animationType="fade">
       <View style={styles.overlay}>
         <View style={styles.modalContent}>
-          <AppText color="black" weight="bold" size="lg">
-            {title}
-          </AppText>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <AppText color="black" weight="bold" size="lg">
+              {title}
+            </AppText>
+            <TouchableOpacity onPress={onCancel}>
+              <Image
+                style={{ width: 32, height: 32 }}
+                source={require('../assets/images/icons/cancel.png')}
+              />
+            </TouchableOpacity>
+          </View>
           <AppText color="gray4" weight="medium" size="md">
             {content}
           </AppText>
           <TouchableOpacity style={styles.buttonContainer}>
-            <AppButton title={'확인'} activate={true} onPress={onClose} />
+            <AppButton
+              title={'확인'}
+              size="medium"
+              activate={true}
+              onPress={onConfirm}
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -53,7 +75,7 @@ const styles = StyleSheet.create({
   modalContent: {
     gap: 10,
     padding: 20,
-    margin: width * 0.05,
+    margin: width * 0.1,
     borderRadius: 16,
     backgroundColor: colors.white,
   },

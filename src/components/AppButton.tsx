@@ -11,7 +11,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { AppText } from './AppText';
 import { colors } from '../theme/color';
 
-type ButtonType = 'fill' | 'outline' | 'secondary' | 'white';
+type ButtonType = 'fill' | 'outline' | 'secondary' | 'gray' | 'white';
 type ButtonSize = 'small' | 'medium' | 'large';
 
 interface AppButtonProps {
@@ -35,6 +35,7 @@ export const AppButton = ({
 }: AppButtonProps) => {
   const isOutline = type === 'outline';
   const isSecondary = type === 'secondary';
+  const isGray = type === 'gray';
   const isWhite = type === 'white';
 
   // 반응형 사이즈
@@ -44,7 +45,7 @@ export const AppButton = ({
   const getSizeStyle = (): ViewStyle => {
     switch (size) {
       case 'small':
-        return { width: 0.2 * width, height: 0.06 * height };
+        return { width: 0.15 * width, height: 0.06 * height };
       case 'medium':
         return { width: 0.7 * width, height: 0.06 * height };
       case 'large':
@@ -60,7 +61,12 @@ export const AppButton = ({
       onPress={onPress}
       activeOpacity={0.5}
       style={[
-        !isOutline && !isSecondary && !isWhite && getSizeStyle() && style,
+        !isOutline &&
+          !isSecondary &&
+          !isWhite &&
+          !isGray &&
+          getSizeStyle() &&
+          style,
       ]}
     >
       {/* outline */}
@@ -78,6 +84,7 @@ export const AppButton = ({
       {/* fill */}
       {!isOutline &&
         !isSecondary &&
+        !isGray &&
         !isWhite &&
         (activate ? (
           <LinearGradient
@@ -113,6 +120,16 @@ export const AppButton = ({
             weight="bold"
             size="md"
           >
+            {title}
+          </AppText>
+          {icon && <View>{icon}</View>}
+        </View>
+      )}
+
+      {/* gray */}
+      {isGray && (
+        <View style={[styles.grayButton, getSizeStyle(), style]}>
+          <AppText color="gray4" weight="medium" size="md">
             {title}
           </AppText>
           {icon && <View>{icon}</View>}
@@ -163,8 +180,7 @@ const styles = StyleSheet.create({
   },
   secondaryButton: {
     borderRadius: 16,
-    paddingVertical: 16,
-    paddingHorizontal: 16,
+    padding: 16,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -172,6 +188,14 @@ const styles = StyleSheet.create({
   },
   secondaryDisabled: {
     backgroundColor: colors.gray2,
+  },
+  grayButton: {
+    borderRadius: 16,
+    padding: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.whitegray,
   },
   whiteInner: {
     flexDirection: 'row',

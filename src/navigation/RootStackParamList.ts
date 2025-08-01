@@ -13,6 +13,8 @@ export type RootStackParamList = {
   Record: undefined;
   Notifications: undefined;
   Account: undefined;
+  Password: undefined;
+  NewPassword: undefined;
   Notice: undefined;
   Alert: undefined;
 };
