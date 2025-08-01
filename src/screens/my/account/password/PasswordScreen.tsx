@@ -36,7 +36,7 @@ export default function PasswordScreen() {
         <AppButton
           title={'확인'}
           type="fill"
-          activate={password.length > 0}
+          activate={password.length > 8}
           onPress={() => navigation.navigate('NewPassword')}
         />
       </View>

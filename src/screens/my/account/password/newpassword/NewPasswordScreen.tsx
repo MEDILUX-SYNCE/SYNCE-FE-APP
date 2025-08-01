@@ -10,7 +10,7 @@ import { AppModal } from '../../../../../components/AppModal';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-export default function () {
+export default function NewPasswordScreen() {
   const [newPassword, setNewPassword] = useState('');
   const [newPasswordCheck, setNewPasswordCheck] = useState('');
   const [passwordChange, setPasswordChange] = useState(false);
