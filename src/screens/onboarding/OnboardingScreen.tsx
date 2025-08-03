@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import {
   Dimensions,
   FlatList,
+  GestureResponderEvent,
   Image,
   SafeAreaView,
   StyleSheet,
@@ -125,11 +126,38 @@ export default function OnboardingScreen() {
       <PageIndicator count={TitleData.length} currentIndex={currentIndex} />
 
       <View style={styles.bottomButtonContainer}>
-        <AppButton
-          activate={true}
-          title={currentIndex === TitleData.length - 1 ? '시작하기' : '다음'}
-          onPress={() => handNext(currentIndex)}
-        />
+        {currentIndex === TitleData.length - 1 ? (
+          <View style={{ gap: 16 }}>
+            <AppButton
+              type={'outline'}
+              activate={true}
+              icon={
+                <Image
+                  source={require('../../assets/images/icons/googleLogo.png')}
+                />
+              }
+              title={'구글로 시작하기'}
+              onPress={() => handNext(currentIndex)}
+            />
+            <AppButton
+              type={'black'}
+              activate={true}
+              icon={
+                <Image
+                  source={require('../../assets/images/icons/appleLogo.png')}
+                />
+              }
+              title={'애플로 시작하기'}
+              onPress={() => handNext(currentIndex)}
+            />
+          </View>
+        ) : (
+          <AppButton
+            activate={true}
+            title={'다음'}
+            onPress={() => handNext(currentIndex)}
+          />
+        )}
       </View>
     </SafeAreaView>
   );
@@ -155,7 +183,7 @@ const styles = StyleSheet.create({
   },
   indicatorContainer: {
     position: 'absolute',
-    bottom: height * 0.22,
+    bottom: height * 0.3,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'center',

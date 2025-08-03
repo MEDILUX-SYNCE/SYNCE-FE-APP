@@ -11,7 +11,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { AppText } from './AppText';
 import { colors } from '../theme/color';
 
-type ButtonType = 'fill' | 'outline' | 'secondary' | 'gray' | 'white';
+type ButtonType = 'fill' | 'outline' | 'secondary' | 'gray' | 'black' | 'white';
 type ButtonSize = 'small' | 'medium' | 'large';
 
 interface AppButtonProps {
@@ -35,8 +35,9 @@ export const AppButton = ({
 }: AppButtonProps) => {
   const isOutline = type === 'outline';
   const isSecondary = type === 'secondary';
-  const isGray = type === 'gray';
   const isWhite = type === 'white';
+  const isGray = type === 'gray';
+  const isBlack = type === 'black';
 
   // 반응형 사이즈
   const { width, height } = Dimensions.get('window');
@@ -65,6 +66,7 @@ export const AppButton = ({
           !isSecondary &&
           !isWhite &&
           !isGray &&
+          !isBlack &&
           getSizeStyle() &&
           style,
       ]}
@@ -86,6 +88,7 @@ export const AppButton = ({
         !isSecondary &&
         !isGray &&
         !isWhite &&
+        !isBlack &&
         (activate ? (
           <LinearGradient
             colors={['#FF3766', '#F58F95']}
@@ -136,6 +139,16 @@ export const AppButton = ({
         </View>
       )}
 
+      {/* black */}
+      {isBlack && (
+        <View style={[styles.blackButton, getSizeStyle(), style]}>
+          {icon && <View>{icon}</View>}
+          <AppText color="white" weight="medium" size="md">
+            {title}
+          </AppText>
+        </View>
+      )}
+
       {/* white */}
       {isWhite && (
         <View
@@ -174,6 +187,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   outlineContent: {
+    gap: 16,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -196,6 +210,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.whitegray,
+  },
+  blackButton: {
+    gap: 16,
+    borderRadius: 16,
+    padding: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.black,
   },
   whiteInner: {
     flexDirection: 'row',
