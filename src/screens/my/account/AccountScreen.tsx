@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/RootStackParamList';
 import { useState } from 'react';
-import { AppModal } from '../../../components/AppModal';
+import { AppModal } from '../../../components/modal/AppModal';
 
 export default function AccountScreen() {
   const navigation =

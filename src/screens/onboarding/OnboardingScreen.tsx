@@ -4,18 +4,23 @@ import {
   Dimensions,
   FlatList,
   Image,
+  Modal,
   SafeAreaView,
-  StyleSheet,
   View,
 } from 'react-native';
 import { AppText } from '../../components/AppText';
 import { AppButton } from '../../components/AppButton';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/RootStackParamList';
+import { TouchableOpacity } from 'react-native';
+import { AppModal } from '../../components/modal/AppModal';
 import { colors } from '../../theme/color';
+import { styles } from './styles';
+import { AppCheckbox } from '../../components/AppCheckbox';
+import { AppCheckboxModal } from '../../components/modal/AppCheckboxModal';
 
 // 화면 너비, 높이 가져오기 (페이지 단위 스크롤)
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 // 타이틀 데이터 배열 정의
 const TitleData = [
@@ -40,12 +45,24 @@ const TitleData = [
 ];
 
 export default function OnboardingScreen() {
-  // 네비게이션 객체 사용
-  type OnboardingScreenNavigationProp = NativeStackNavigationProp<
-    RootStackParamList,
-    'Onboarding'
-  >;
-  const navigation = useNavigation<OnboardingScreenNavigationProp>();
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const [agree14, setAgree14] = useState(false);
+  const [agreeService, setAgreeService] = useState(false);
+  const [agreePrivacy, setAgreePrivacy] = useState(false);
+  const [agreeServiceModal, setAgreeServiceModal] = useState(false);
+  const [agreePrivacyModal, setAgreePrivacyModal] = useState(false);
+
+  const allChecked = agree14 && agreeService && agreePrivacy;
+  const toggleAll = () => {
+    const next = !allChecked;
+    setAgree14(next);
+    setAgreeService(next);
+    setAgreePrivacy(next);
+  };
+
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   // useRef(): 컴포넌트 내부에서 특정 DOM 또는 React Native 컴포넌트 인스턴스를 기억하고 제어하는 Hook
   const flatListRef = useRef<FlatList>(null);
@@ -54,7 +71,6 @@ export default function OnboardingScreen() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // 페이지 인디케이터 설정
-  // eslint-disable-next-line react/no-unstable-nested-components
   const PageIndicator = ({
     count,
     currentIndex,
@@ -79,7 +95,7 @@ export default function OnboardingScreen() {
 
   const handNext = (index: number) => {
     if (index === TitleData.length - 1) {
-      navigation.replace('Login');
+      setModalVisible(true);
     } else {
       flatListRef.current?.scrollToIndex({ index: index + 1 });
     }
@@ -112,64 +128,61 @@ export default function OnboardingScreen() {
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
-        // onMomentumScrollEnd: 스크롤이 끝났을 때 호출되는 이벤트
         onMomentumScrollEnd={e => {
-          // e.nativeEvent.contentOffset.x : 수평 스크롤 거리 (px)
-          // Math.round(... / width) : 현재 몇 번째 인덱스인지 계산
           const newIndex = Math.round(e.nativeEvent.contentOffset.x / width);
           setCurrentIndex(newIndex);
         }}
       />
-
       <PageIndicator count={TitleData.length} currentIndex={currentIndex} />
-
       <View style={styles.bottomButtonContainer}>
-        <AppButton
-          activate={true}
-          title={currentIndex === TitleData.length - 1 ? '시작하기' : '다음'}
-          onPress={() => handNext(currentIndex)}
-        />
+        {currentIndex === TitleData.length - 1 ? (
+          <View style={{ gap: 16 }}>
+            <AppButton
+              type={'outline'}
+              activate={true}
+              icon={
+                <Image
+                  source={require('../../assets/images/icons/googleLogo.png')}
+                />
+              }
+              title={'구글로 시작하기'}
+              onPress={() => handNext(currentIndex)}
+            />
+            <AppButton
+              type={'black'}
+              activate={true}
+              icon={
+                <Image
+                  source={require('../../assets/images/icons/appleLogo.png')}
+                />
+              }
+              title={'애플로 시작하기'}
+              onPress={() => handNext(currentIndex)}
+            />
+          </View>
+        ) : (
+          <AppButton
+            activate={true}
+            title={'다음'}
+            onPress={() => handNext(currentIndex)}
+          />
+        )}
       </View>
+
+      {/* 이용 약관 모달 */}
+      <AppCheckboxModal
+        visible={modalVisible}
+        title="서비스 이용 약관에  동의해주세요."
+        firstContent="(필수) 만 14세 이상입니다"
+        checkLabel="(필수) "
+        secondContent="서비스 이용약관 확인"
+        thirdContent="개인정보 수집이용 동의"
+        onClose={() => setModalVisible(false)}
+        onAgree={() => {
+          setModalVisible(false);
+          navigation.navigate('Signup');
+        }}
+      />
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  page: {
-    width,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingTop: height * 0.12,
-  },
-  image: {
-    width: width * 0.9,
-    height: height * 0.3,
-    marginVertical: height * 0.1,
-  },
-  bottomButtonContainer: {
-    position: 'absolute',
-    bottom: height * 0.1,
-    left: 20,
-    right: 20,
-  },
-  indicatorContainer: {
-    position: 'absolute',
-    bottom: height * 0.22,
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  dot: {
-    width: 6,
-    height: 6,
-    borderRadius: 3,
-    marginHorizontal: 4,
-  },
-  activeDot: {
-    backgroundColor: colors.primary1,
-  },
-  inactiveDot: {
-    backgroundColor: colors.gray1,
-  },
-});

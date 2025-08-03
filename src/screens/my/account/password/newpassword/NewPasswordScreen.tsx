@@ -6,7 +6,7 @@ import { AppInput } from '../../../../../components/AppInput';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../../../navigation/RootStackParamList';
 import { colors } from '../../../../../theme/color';
-import { AppModal } from '../../../../../components/AppModal';
+import { AppModal } from '../../../../../components/modal/AppModal';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
