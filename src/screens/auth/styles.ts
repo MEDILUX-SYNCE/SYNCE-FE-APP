@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     marginVertical: 16,
   },
   stepLine: {
-    width: width * 0.125,
+    width: width * 0.3,
     height: 2,
     backgroundColor: colors.whitegray,
   },
