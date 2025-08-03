@@ -3,8 +3,13 @@ import { styles } from './styles';
 import { AppText } from '../../components/AppText';
 import { articles, categories } from './data/ArticleCategories';
 import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../navigation/RootStackParamList';
 
 export default function ArticleScreen() {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const filteredArticles =
     selectedCategory === '전체'
@@ -35,9 +40,9 @@ export default function ArticleScreen() {
             onPress={() => setSelectedCategory(category)}
           >
             <AppText
-              size="sm"
-              color={selectedCategory === category ? 'primary1' : 'gray4'}
-              weight="medium"
+              size="md"
+              color={selectedCategory === category ? 'black' : 'gray4'}
+              weight={selectedCategory === category ? 'bold' : 'medium'}
             >
               {category}
             </AppText>
@@ -54,18 +59,22 @@ export default function ArticleScreen() {
 
       {/* 아티클 모음 */}
       {filteredArticles.map(article => (
-        <View key={article.id} style={styles.articleCard}>
+        <TouchableOpacity
+          key={article.id}
+          style={styles.articleCard}
+          onPress={() => navigation.navigate('ArticleDetail', { article })}
+        >
           <Image source={article.image} style={styles.thumbnail} />
           <View style={{ padding: 12 }}>
             <AppText
-              size="sm"
+              size="md"
               weight="bold"
-              color="black"
-              style={{ marginBottom: 4 }}
+              color="gray4"
+              style={{ marginBottom: 8 }}
             >
               {article.title}
             </AppText>
-            <AppText size="xs" color="gray4" numberOfLines={2}>
+            <AppText size="sm" color="gray4" numberOfLines={2}>
               {article.desc}
             </AppText>
             <View
@@ -74,6 +83,7 @@ export default function ArticleScreen() {
               {article.tags.map((tag, idx) => (
                 <AppText
                   key={idx}
+                  weight="bold"
                   size="xs"
                   color="primary1"
                   style={{ marginRight: 8 }}
@@ -83,7 +93,7 @@ export default function ArticleScreen() {
               ))}
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
       ))}
     </ScrollView>
   );
