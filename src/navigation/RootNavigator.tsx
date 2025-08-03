@@ -12,7 +12,7 @@ import PasswordScreen from '../screens/my/account/password/PasswordScreen';
 import LoginScreen from '../screens/auth/LoginScreen';
 import NewPasswordScreen from '../screens/my/account/password/newpassword/NewPasswordScreen';
 import OnboardingScreen from '../screens/onboarding/OnboardingScreen';
-import SplashScreen from '../screens/onboarding/SplashScreen';
+import SplashScreen from '../screens/splash/SplashScreen';
 import SignupScreen from '../screens/auth/SignupScreen';
 
 // Stack 전역 네비게이션 (앱 전체에서의 흐름 관리용)

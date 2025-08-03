@@ -16,7 +16,7 @@ import { RootStackParamList } from '../../navigation/RootStackParamList';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { AppInput } from '../../components/AppInput';
-import { AppModal } from '../../components/AppModal';
+import { AppModal } from '../../components/modal/AppModal';
 import { styles } from './styles';
 
 const { width, height } = Dimensions.get('window');

@@ -1,11 +1,12 @@
 import React from 'react';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { AppText } from '../../components/AppText';
 import { colors } from '../../theme/color';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/RootStackParamList';
+import { styles } from './styles';
 
 export default function SplashScreen() {
   const navigation =
@@ -54,7 +55,6 @@ export default function SplashScreen() {
             }}
           />
         </View>
-
         {/* 버튼 */}
         <View style={{ flexDirection: 'row' }}>
           <TouchableOpacity onPress={() => navigation.navigate('Onboarding')}>
@@ -68,12 +68,3 @@ export default function SplashScreen() {
     </LinearGradient>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
