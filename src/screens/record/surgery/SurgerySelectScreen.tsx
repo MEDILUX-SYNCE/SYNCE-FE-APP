@@ -11,7 +11,7 @@ import { TopNavigation } from '../../../navigation/TopNavigation';
 import { AppText } from '../../../components/AppText';
 import { AppButton } from '../../../components/AppButton';
 import { colors } from '../../../theme/color';
-import { SURGERY_CATEGORIES } from './data/surgeryCategories';
+import { SURGERY_CATEGORIES } from './data/SurgeryCategories';
 
 type Props = {
   visible: boolean;
@@ -48,11 +48,7 @@ export default function SurgerySelectScreen({
     <Modal visible={visible} animationType="slide">
       <View style={styles.modal}>
         {/* 헤더 */}
-        <TopNavigation
-          title="수술 종류 선택"
-          hasBack
-          hasCancel={false}
-        />
+        <TopNavigation title="수술 종류 선택" hasBack hasCancel={false} />
 
         {/* 내용 */}
         <ScrollView contentContainerStyle={styles.content}>
@@ -210,7 +206,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
   },
   subItem: {
-    backgroundColor: colors.whitegrey,
+    backgroundColor: colors.whitegray,
     color: colors.gray4,
     borderRadius: 8,
     paddingHorizontal: 8,
