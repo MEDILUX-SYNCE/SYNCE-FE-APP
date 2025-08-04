@@ -1,9 +1,16 @@
-import { ScrollView, View } from 'react-native';
+import {
+  GestureResponderEvent,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { TopNavigation } from '../../navigation/TopNavigation';
 import { styles } from './styles';
 import { AppCard } from '../../components/AppCard';
 import { AppText } from '../../components/AppText';
 import { colors } from '../../theme/color';
+import { AppButton } from '../../components/AppButton';
 
 export default function RecordScreen() {
   return (
@@ -47,7 +54,7 @@ export default function RecordScreen() {
               </AppText>
               <View style={styles.tagsContainer}>
                 <View style={styles.tag}>
-                  <AppText size="sm" weight="bold" color="primary1">
+                  <AppText size="sm" weight="medium" color="primary1">
                     자연유착 쌍커풀
                   </AppText>
                 </View>
@@ -67,6 +74,23 @@ export default function RecordScreen() {
         {/* 2번째 카드 */}
         <AppCard id={1} />
       </ScrollView>
+
+      {/* 고정 버튼 */}
+      <View style={styles.fixedButton}>
+        <AppButton
+          type="fill"
+          size="smallMedium"
+          icon={
+            <Image
+              style={{ width: 32, height: 32 }}
+              source={require('../../assets/images/icons/record.png')}
+            />
+          }
+          title={'기록하기'}
+          activate={true}
+          onPress={() => {}}
+        />
+      </View>
     </View>
   );
 }

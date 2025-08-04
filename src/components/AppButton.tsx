@@ -12,7 +12,7 @@ import { AppText } from './AppText';
 import { colors } from '../theme/color';
 
 type ButtonType = 'fill' | 'outline' | 'secondary' | 'gray' | 'black' | 'white';
-type ButtonSize = 'small' | 'medium' | 'large';
+type ButtonSize = 'small' | 'smallMedium' | 'medium' | 'large';
 
 interface AppButtonProps {
   title: string;
@@ -47,6 +47,8 @@ export const AppButton = ({
     switch (size) {
       case 'small':
         return { width: 0.15 * width, height: 0.06 * height };
+      case 'smallMedium':
+        return { width: 0.35 * width, height: 0.06 * height };
       case 'medium':
         return { width: 0.7 * width, height: 0.06 * height };
       case 'large':
@@ -90,18 +92,22 @@ export const AppButton = ({
         !isWhite &&
         !isBlack &&
         (activate ? (
-          <LinearGradient
-            colors={['#FF3766', '#F58F95']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-            style={[styles.button, style, , getSizeStyle()]}
-          >
-            <AppText color="white" weight="bold" size="md">
-              {title}
-            </AppText>
-          </LinearGradient>
+          <View style={[styles.button, getSizeStyle()]}>
+            <LinearGradient
+              colors={['#FF3766', '#F58F95']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={[styles.button, style, , getSizeStyle()]}
+            >
+              {icon && <View>{icon}</View>}
+              <AppText color="white" weight="bold" size="md">
+                {title}
+              </AppText>
+            </LinearGradient>
+          </View>
         ) : (
           <View style={[styles.button, getSizeStyle()]}>
+            {icon && <View>{icon}</View>}
             <AppText color="white" weight="bold" size="md">
               {title}
             </AppText>
@@ -171,6 +177,8 @@ export const AppButton = ({
 
 const styles = StyleSheet.create({
   button: {
+    gap: 8,
+    flexDirection: 'row',
     backgroundColor: colors.gray1,
     borderRadius: 16,
     paddingVertical: 16,

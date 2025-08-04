@@ -35,10 +35,15 @@ export const styles = StyleSheet.create({
   },
   footer: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 100,
     left: 0,
     right: 0,
     paddingHorizontal: 16,
     backgroundColor: 'white',
+  },
+  fixedButton: {
+    bottom: 120,
+    alignSelf: 'center',
+    position: 'absolute',
   },
 });
