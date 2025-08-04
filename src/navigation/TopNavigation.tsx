@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import { Alert, Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { AppText } from '../components/AppText';
 import { useNavigation } from '@react-navigation/native';
@@ -10,7 +9,6 @@ type TopNavigationProps = {
   hasBack?: boolean;
   hasDropdown?: boolean;
   onPressDropdown?: () => void;
-  backIconType?: 'arrow' | 'cancel';
 };
 
 export const TopNavigation = ({
@@ -19,13 +17,8 @@ export const TopNavigation = ({
   hasBack = false,
   hasDropdown = false,
   onPressDropdown,
-  backIconType,
 }: TopNavigationProps) => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
-  const backIconSource =
-    backIconType === 'cancel'
-      ? require('../assets/images/icons/cancel.png')
-      : require('../assets/images/icons/leftArrow.png');
 
   return (
     <View style={styles.container}>
@@ -41,7 +34,7 @@ export const TopNavigation = ({
               }
             }}
           >
-            <Image style={{ width: 32, height: 32 }} source={backIconSource} />
+            <Image style={{ width: 32, height: 32 }} />
           </TouchableOpacity>
         )}
       </View>

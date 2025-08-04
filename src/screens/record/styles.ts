@@ -18,6 +18,16 @@ export const styles = StyleSheet.create({
     paddingVertical: 4,
     gap: 4,
   },
+
+  recordTag: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.whitegray,
+    borderRadius: 16,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    gap: 4,
+  },
   footer: {
     position: 'absolute',
     bottom: 0,
