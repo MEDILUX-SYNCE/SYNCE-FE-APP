@@ -14,9 +14,6 @@ import { colors } from '../../../theme/color';
 import { AppInput } from '../../../components/AppInput';
 import { fontSizes } from '../../../theme/fontSizes';
 import Config from 'react-native-config';
-console.log('Config.SERVICE_KEY: ', Config.SERVICE_KEY);
-
-const { width } = Dimensions.get('window');
 
 type HospitalSearchScreenProps = {
   visible: boolean;
@@ -137,7 +134,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 16,
-    backgroundColor: colors.whitegrey,
+    backgroundColor: colors.whitegray,
   },
   selectText: {
     fontSize: fontSizes.sm,

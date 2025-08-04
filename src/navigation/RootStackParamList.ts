@@ -1,3 +1,5 @@
+import { ArticleType } from '../screens/article/data/ArticleCategories';
+
 // Stack 전역 네비게이션 (앱 전체에서의 흐름 관리용)
 export type RootStackParamList = {
   Splash: undefined;
@@ -12,6 +14,7 @@ export type RootStackParamList = {
   };
   Record: undefined;
   Notifications: undefined;
+  ArticleDetail: { article: ArticleType };
   Account: undefined;
   Password: undefined;
   NewPassword: undefined;
