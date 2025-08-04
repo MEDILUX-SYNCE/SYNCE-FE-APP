@@ -33,7 +33,7 @@ export const AppModal = ({
               {title}
             </AppText>
             {onCancel && (
-              <TouchableOpacity>
+              <TouchableOpacity onPress={onCancel}>
                 <Image
                   style={{ width: 32, height: 32 }}
                   source={require('../../assets/images/icons/cancel.png')}
