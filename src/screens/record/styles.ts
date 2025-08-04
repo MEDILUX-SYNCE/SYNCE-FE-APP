@@ -3,6 +3,11 @@ import { colors } from '../../theme/color';
 
 export const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.white },
+  top: {
+    height: '15%',
+    flexDirection: 'column',
+    backgroundColor: colors.redwhite,
+  },
   inputContainer: { padding: 16, gap: 8 },
   tagsContainer: {
     flexDirection: 'row',

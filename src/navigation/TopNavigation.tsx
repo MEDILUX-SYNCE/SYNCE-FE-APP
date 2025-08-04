@@ -3,8 +3,11 @@ import { AppText } from '../components/AppText';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
+type TitleSizeType = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+
 type TopNavigationProps = {
   title: string;
+  titleSize?: TitleSizeType;
   hasCancel: boolean;
   hasBack?: boolean;
   hasDropdown?: boolean;
@@ -13,6 +16,7 @@ type TopNavigationProps = {
 
 export const TopNavigation = ({
   title,
+  titleSize = 'lg',
   hasCancel = false,
   hasBack = false,
   hasDropdown = false,
@@ -41,7 +45,7 @@ export const TopNavigation = ({
 
       {/* 가운데 (타이틀 + 드롭다운 아이콘) */}
       <View style={styles.center}>
-        <AppText size="lg" weight="bold" color="black">
+        <AppText size={titleSize} weight="bold" color="black">
           {title}
         </AppText>
       </View>
