@@ -20,7 +20,7 @@ type Props = {
   onConfirm: (selected: string[]) => void;
 };
 
-export default function SurgerySelectScreen({
+export default function SymptomSelectScreen({
   visible,
   selected,
   onClose,
@@ -48,10 +48,24 @@ export default function SurgerySelectScreen({
     <Modal visible={visible} animationType="slide">
       <View style={styles.modal}>
         {/* 헤더 */}
-        <TopNavigation title="수술 종류 선택" hasBack hasCancel={false} />
+        <TopNavigation title="증상 선택" hasBack hasCancel={false} />
 
         {/* 내용 */}
         <ScrollView contentContainerStyle={styles.content}>
+          {/* 버튼 */}
+          <AppButton
+            title={'이전 증상 불러오기'}
+            icon={
+              <Image
+                style={{ width: 32, height: 32 }}
+                source={require('../../../assets/images/icons/plus.png')}
+              />
+            }
+            type="outline"
+            onPress={() => {}}
+            activate={false}
+          />
+
           {SURGERY_CATEGORIES.map(category => (
             <View key={category.name} style={styles.categoryContainer}>
               {/* 카테고리 타이틀 */}

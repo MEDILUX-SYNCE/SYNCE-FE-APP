@@ -90,6 +90,11 @@ export const styles = StyleSheet.create({
   cameraAndCheck: {
     gap: 16,
   },
+  selectedCamera: {
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+  },
   checkContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -97,7 +102,8 @@ export const styles = StyleSheet.create({
     gap: 4,
   },
   cameraContainer: {
-    width: '25%',
+    width: 80,
+    height: 80,
     padding: 16,
     borderWidth: 1,
     borderRadius: 8,
