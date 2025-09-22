@@ -205,7 +205,7 @@ export default function RecordReviewScreen() {
       <View style={[styles.footer, { paddingBottom: insets.bottom + 16 }]}>
         <AppButton
           title="작성 완료"
-          activate={selectedSurgeries.length > 0 && !!selectedDate}
+          activate={selectedSurgeries.length > 0}
           onPress={() => {
             navigation.navigate('Home');
           }}
