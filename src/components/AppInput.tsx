@@ -11,6 +11,7 @@ import { colors } from '../theme/color';
 import { fontSizes } from '../theme/fontSizes';
 import { fonts } from '../theme/fonts';
 import { AppText } from './AppText';
+import { styles } from './styles';
 
 interface AppInputProps extends TextInputProps {
   isError?: boolean;
@@ -41,21 +42,3 @@ export const AppInput = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    borderWidth: 1,
-    borderRadius: 16,
-    borderColor: colors.gray1,
-  },
-  textInput: {
-    margin: 8,
-    padding: 8,
-    fontSize: fontSizes.sm,
-    fontFamily: fonts.medium,
-    color: colors.black,
-  },
-  inputError: {
-    borderColor: colors.primary1,
-  },
-});

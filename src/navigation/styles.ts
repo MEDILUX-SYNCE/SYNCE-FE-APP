@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 16,
-    marginVertical: 14,
+    marginHorizontal: 8,
+    marginVertical: 16,
     gap: 16,
     flexDirection: 'row',
     alignItems: 'center',

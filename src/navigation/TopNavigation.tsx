@@ -13,8 +13,10 @@ type TopNavigationProps = {
   hasBack?: boolean;
   hasDropdown?: boolean;
   hasMore?: boolean;
+  hasCalendar?: boolean;
   onPressDropdown?: () => void;
   onPressMore?: () => void;
+  onPressCalendar?: () => void;
 };
 
 export const TopNavigation = ({
@@ -24,8 +26,10 @@ export const TopNavigation = ({
   hasBack = false,
   hasDropdown = false,
   hasMore = false,
+  hasCalendar = false,
   onPressDropdown,
   onPressMore,
+  onPressCalendar,
 }: TopNavigationProps) => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
@@ -81,14 +85,21 @@ export const TopNavigation = ({
 
       {/* 오른쪽 (더보기 아이콘) */}
       <View style={styles.right}>
-        {hasMore && (
+        {hasMore ? (
           <TouchableOpacity onPress={onPressMore}>
             <Image
               style={{ width: 32, height: 32 }}
               source={require('../assets/images/icons/menu.png')}
             />
           </TouchableOpacity>
-        )}
+        ) : hasCalendar ? (
+          <TouchableOpacity onPress={onPressCalendar}>
+            <Image
+              style={{ width: 32, height: 32 }}
+              source={require('../assets/images/icons/calendar.png')}
+            />
+          </TouchableOpacity>
+        ) : null}
       </View>
     </View>
   );

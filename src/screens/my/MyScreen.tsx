@@ -7,6 +7,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../navigation/RootStackParamList';
 import { AppButton } from '../../components/AppButton';
+import { TopNavigation } from '../../navigation/TopNavigation';
 
 export default function MyScreen() {
   const navigation =
@@ -14,14 +15,8 @@ export default function MyScreen() {
 
   return (
     <View style={styles.screen}>
-      {/* top */}
-      <View style={styles.top}>
-        <View style={{ margin: 16 }}>
-          <AppText color="black" size="xl" weight="bold">
-            내 정보
-          </AppText>
-        </View>
-      </View>
+      {/* 헤더 */}
+      <TopNavigation title={'내정보'} titleSize="xl" hasCancel={false} />
 
       {/* 프로필 카드 */}
       <View style={{ position: 'absolute', top: 50 }}>

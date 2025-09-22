@@ -14,6 +14,7 @@ import SplashScreen from '../screens/splash/SplashScreen';
 import SignupScreen from '../screens/auth/SignupScreen';
 import ArticleDetail from '../screens/article/ArticleDetail';
 import { BottomTabNavigator } from './bottomTabNavigator';
+import RecordReviewScreen from '../screens/record/RecordReviewScreen';
 
 // Stack 전역 네비게이션 (앱 전체에서의 흐름 관리용)
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -38,6 +39,10 @@ const RootNavigator = () => {
       <Stack.Screen
         name="Record"
         component={withAppLayout(RecordProgressScreen)}
+      />
+      <Stack.Screen
+        name="RecordReview"
+        component={withAppLayout(RecordReviewScreen)}
       />
       <Stack.Screen
         name="ArticleDetail"

@@ -11,6 +11,7 @@ import { AppButton } from './AppButton';
 import { colors } from '../theme/color';
 import { TopNavigation } from '../navigation/TopNavigation';
 import { useState } from 'react';
+import { styles } from './styles';
 
 type Props = {
   visible: boolean;
@@ -346,52 +347,3 @@ export default function SurgerySelectModal({
     </Modal>
   );
 }
-
-const styles = StyleSheet.create({
-  modal: { flex: 1, backgroundColor: colors.white },
-  content: { padding: 16 },
-  categoryContainer: { marginBottom: 16 },
-  categoryItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    borderBottomWidth: 1,
-    paddingVertical: 12,
-    borderBottomColor: colors.gray1,
-  },
-  subCategoryContainer: {
-    marginTop: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.gray1,
-  },
-  subCategoryItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 16,
-  },
-  subItemContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 10,
-    marginVertical: 4,
-    paddingVertical: 10,
-  },
-  subItem: {
-    backgroundColor: colors.whitegray,
-    borderRadius: 16,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-  },
-  subItemSelected: {
-    color: colors.primary1,
-    backgroundColor: colors.redwhite,
-  },
-  footer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 16,
-  },
-  arrowContainer: {
-    width: 32,
-    height: 32,
-  },
-});

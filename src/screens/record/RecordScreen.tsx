@@ -74,7 +74,7 @@ export default function RecordScreen() {
           title={'기록하기'}
           activate={true}
           onPress={() => {
-            navigation.navigate('Record');
+            navigation.navigate('RecordReview');
           }}
         />
       </View>
@@ -95,30 +95,13 @@ export default function RecordScreen() {
             activeOpacity={1}
             onPressOut={() => setMoreVisible(false)}
           >
-            <View
-              style={{
-                width: 200,
-                position: 'absolute',
-                top: 60,
-                right: 16,
-                borderRadius: 16,
-                elevation: 5,
-                paddingVertical: 8,
-                paddingHorizontal: 12,
-                backgroundColor: colors.white,
-                shadowColor: '#000',
-                shadowOpacity: 0.1,
-                shadowOffset: { width: 0, height: 2 },
-              }}
-            >
+            <View style={styles.menu}>
               {/* 수정하기 */}
               <TouchableOpacity
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}
+                style={styles.menuBtn}
                 onPress={() => {
                   setMoreVisible(false);
+                  navigation.navigate('Record');
                 }}
               >
                 <AppText size="md" weight="medium" color="black">
@@ -130,21 +113,18 @@ export default function RecordScreen() {
                 />
               </TouchableOpacity>
 
-              {/* 라인 */}
+              {/* 구분선 */}
               <View
                 style={{
                   height: 1,
-                  backgroundColor: colors.gray1,
-                  marginVertical: 10,
+                  backgroundColor: colors.gray2,
+                  marginHorizontal: 12,
                 }}
               />
 
               {/* 삭제하기 */}
               <TouchableOpacity
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}
+                style={styles.menuBtn}
                 onPress={() => {
                   setMoreVisible(false);
                 }}

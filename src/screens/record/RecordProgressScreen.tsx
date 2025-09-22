@@ -42,7 +42,7 @@ export default function RecordProgressScreen() {
         contentContainerStyle={{ paddingBottom: insets.bottom + 140 }}
       >
         {/* 수술 종류 */}
-        <View style={styles.inputContainer}>
+        <View style={styles.ProgressInputContainer}>
           <AppText color="black" weight="bold" size="md">
             수술 종류
           </AppText>

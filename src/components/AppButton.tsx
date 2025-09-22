@@ -10,6 +10,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import { AppText } from './AppText';
 import { colors } from '../theme/color';
+import { styles } from './styles';
 
 type ButtonType = 'fill' | 'outline' | 'secondary' | 'gray' | 'black' | 'white';
 type ButtonSize = 'small' | 'smallMedium' | 'medium' | 'large';
@@ -174,72 +175,3 @@ export const AppButton = ({
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  button: {
-    gap: 8,
-    flexDirection: 'row',
-    backgroundColor: colors.gray1,
-    borderRadius: 16,
-    paddingVertical: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  outlineButton: {
-    borderRadius: 24,
-    paddingVertical: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: colors.gray2,
-    backgroundColor: colors.white,
-  },
-  outlineContent: {
-    gap: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  secondaryButton: {
-    borderRadius: 16,
-    padding: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.redwhite,
-  },
-  secondaryDisabled: {
-    backgroundColor: colors.gray2,
-  },
-  grayButton: {
-    borderRadius: 16,
-    padding: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.whitegray,
-  },
-  blackButton: {
-    gap: 16,
-    borderRadius: 16,
-    padding: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.black,
-  },
-  whiteInner: {
-    flexDirection: 'row',
-    borderRadius: 16,
-    paddingVertical: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.white,
-  },
-  disabled: {
-    opacity: 0.5,
-  },
-  iconWrapper: {
-    marginRight: 8,
-  },
-});
