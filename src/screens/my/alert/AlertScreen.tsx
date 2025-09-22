@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { ScrollView, View, StyleSheet, Switch } from 'react-native';
 import { TopNavigation } from '../../../navigation/TopNavigation';
-import { colors } from '../../../theme/color';
 import { AppText } from '../../../components/AppText';
 import { AppSwitch } from '../../../components/AppSwitch';
+import { styles } from './styles';
 
 export default function AlertScreen() {
   // 스위치 상태 관리
@@ -87,27 +87,3 @@ export default function AlertScreen() {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.white,
-  },
-  topCard: {
-    backgroundColor: colors.white,
-    borderBottomWidth: 7,
-    borderBottomColor: colors.whitegray,
-  },
-  card: {
-    backgroundColor: colors.white,
-  },
-  row: {
-    paddingHorizontal: 16,
-    paddingVertical: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderBottomColor: colors.whitegray,
-  },
-});

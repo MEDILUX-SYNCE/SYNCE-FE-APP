@@ -15,7 +15,7 @@ const responsiveHeight = height * 0.13;
 // 타입을 BottomTabNavigator 에 연결
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
-const BottomTabNavigator = () => {
+export const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -121,5 +121,3 @@ const BottomTabNavigator = () => {
     </Tab.Navigator>
   );
 };
-
-export default BottomTabNavigator;

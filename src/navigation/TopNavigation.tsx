@@ -2,6 +2,7 @@ import { Alert, Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { AppText } from '../components/AppText';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { styles } from './styles';
 
 type TitleSizeType = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
@@ -11,7 +12,9 @@ type TopNavigationProps = {
   hasCancel: boolean;
   hasBack?: boolean;
   hasDropdown?: boolean;
+  hasMore?: boolean;
   onPressDropdown?: () => void;
+  onPressMore?: () => void;
 };
 
 export const TopNavigation = ({
@@ -20,15 +23,17 @@ export const TopNavigation = ({
   hasCancel = false,
   hasBack = false,
   hasDropdown = false,
+  hasMore = false,
   onPressDropdown,
+  onPressMore,
 }: TopNavigationProps) => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   return (
     <View style={styles.container}>
-      {/* 왼쪽 (뒤로가기 아이콘) */}
+      {/* 왼쪽 (뒤로가기 또는 취소 아이콘) */}
       <View style={styles.left}>
-        {hasBack && (
+        {hasBack ? (
           <TouchableOpacity
             onPress={() => {
               if (navigation.canGoBack()) {
@@ -38,9 +43,23 @@ export const TopNavigation = ({
               }
             }}
           >
-            <Image style={{ width: 32, height: 32 }} />
+            <Image
+              style={{ width: 32, height: 32 }}
+              source={require('../assets/images/icons/leftArrow.png')}
+            />
           </TouchableOpacity>
-        )}
+        ) : hasCancel ? (
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Home');
+            }}
+          >
+            <Image
+              style={{ width: 32, height: 32 }}
+              source={require('../assets/images/icons/cancel.png')}
+            />
+          </TouchableOpacity>
+        ) : null}
       </View>
 
       {/* 가운데 (타이틀 + 드롭다운 아이콘) */}
@@ -59,25 +78,18 @@ export const TopNavigation = ({
           </TouchableOpacity>
         )}
       </View>
+
+      {/* 오른쪽 (더보기 아이콘) */}
+      <View style={styles.right}>
+        {hasMore && (
+          <TouchableOpacity onPress={onPressMore}>
+            <Image
+              style={{ width: 32, height: 32 }}
+              source={require('../assets/images/icons/menu.png')}
+            />
+          </TouchableOpacity>
+        )}
+      </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    marginHorizontal: 16,
-    marginVertical: 14,
-    gap: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  left: {
-    alignItems: 'flex-start',
-  },
-  center: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-});

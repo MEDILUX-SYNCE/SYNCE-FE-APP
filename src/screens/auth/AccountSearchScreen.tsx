@@ -14,6 +14,7 @@ import { AppButton } from '../../components/AppButton';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../navigation/RootStackParamList';
+import { styles } from './styles';
 
 const { width } = Dimensions.get('window');
 
@@ -135,31 +136,3 @@ export default function AccountSearchScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    padding: width * 0.05,
-    backgroundColor: colors.white,
-  },
-  tapContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingVertical: 20,
-    borderBottomWidth: 1,
-    borderColor: colors.white,
-  },
-  tabItem: {
-    paddingBottom: 16,
-  },
-  activeTab: {
-    borderBottomWidth: 2,
-    borderBottomColor: colors.black,
-  },
-  contentContainer: {
-    gap: 8,
-  },
-  contentWrapper: {
-    marginBottom: 32,
-  },
-});

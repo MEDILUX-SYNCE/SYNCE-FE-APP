@@ -142,7 +142,7 @@ export default function SurgerySelectScreen({
                                   size="sm"
                                   color={
                                     selectedItems.includes(sub)
-                                      ? 'primary'
+                                      ? 'primary1'
                                       : 'gray4'
                                   }
                                 >

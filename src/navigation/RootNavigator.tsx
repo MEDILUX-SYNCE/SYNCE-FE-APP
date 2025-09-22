@@ -1,6 +1,5 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import BottomTabNavigator from './BottomTabNavigator';
 import NotificationsScreen from '../screens/home/NotificationsScreen';
 import { RootStackParamList } from './RootStackParamList';
 import { withAppLayout } from '../components/layouts/withAppLayout';
@@ -14,6 +13,7 @@ import OnboardingScreen from '../screens/onboarding/OnboardingScreen';
 import SplashScreen from '../screens/splash/SplashScreen';
 import SignupScreen from '../screens/auth/SignupScreen';
 import ArticleDetail from '../screens/article/ArticleDetail';
+import { BottomTabNavigator } from './bottomTabNavigator';
 
 // Stack 전역 네비게이션 (앱 전체에서의 흐름 관리용)
 const Stack = createNativeStackNavigator<RootStackParamList>();
