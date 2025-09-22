@@ -3,7 +3,13 @@ import { colors } from '../../theme/color';
 
 export const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.white },
-  inputContainer: { padding: 16, gap: 8 },
+  top: {
+    height: '15%',
+    flexDirection: 'column',
+    backgroundColor: colors.redwhite,
+  },
+  ProgressInputContainer: { padding: 16, gap: 8 },
+  inputContainer: { padding: 16, gap: 16 },
   tagsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -18,6 +24,16 @@ export const styles = StyleSheet.create({
     paddingVertical: 4,
     gap: 4,
   },
+
+  recordTag: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.whitegray,
+    borderRadius: 16,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    gap: 4,
+  },
   footer: {
     position: 'absolute',
     bottom: 0,
@@ -25,5 +41,80 @@ export const styles = StyleSheet.create({
     right: 0,
     paddingHorizontal: 16,
     backgroundColor: 'white',
+  },
+  fixedButton: {
+    bottom: 120,
+    alignSelf: 'center',
+    position: 'absolute',
+  },
+  infoCard: {
+    position: 'absolute',
+    top: 65,
+    width: '90%',
+    alignSelf: 'center',
+    padding: 16,
+    borderRadius: 16,
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    borderColor: colors.redwhite3,
+    shadowColor: '#FFE2E7',
+    shadowOpacity: 0.2,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    elevation: 10,
+  },
+  menu: {
+    width: 200,
+    position: 'absolute',
+    top: 60,
+    right: 16,
+    borderRadius: 12,
+    backgroundColor: colors.white,
+    elevation: 6,
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 2 },
+  },
+  menuBtn: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+  },
+  surgeryContainer: {
+    gap: 16,
+  },
+  cameraAndCheck: {
+    gap: 16,
+  },
+  selectedCamera: {
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+  },
+  checkContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    gap: 4,
+  },
+  cameraContainer: {
+    width: 80,
+    height: 80,
+    padding: 16,
+    borderWidth: 1,
+    borderRadius: 8,
+    borderColor: colors.gray2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
+  line: {
+    height: 1,
+    backgroundColor: colors.gray1,
+    marginVertical: 5,
   },
 });

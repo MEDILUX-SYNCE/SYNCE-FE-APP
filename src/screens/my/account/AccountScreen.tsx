@@ -61,7 +61,7 @@ export default function AccountScreen() {
         title={'로그아웃'}
         content={'정말 로그아웃하시겠어요?'}
         visible={logout}
-        onConfirm={() => navigation.navigate('Login')}
+        onConfirm={() => navigation.navigate('Splash')}
         onCancel={() => setLogout(false)}
       />
     </ScrollView>

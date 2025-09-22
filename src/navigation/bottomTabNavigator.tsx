@@ -1,5 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import RecordScreen from '../screens/record/RecordScreen';
@@ -17,7 +15,7 @@ const responsiveHeight = height * 0.13;
 // 타입을 BottomTabNavigator 에 연결
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
-const BottomTabNavigator = () => {
+export const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -123,5 +121,3 @@ const BottomTabNavigator = () => {
     </Tab.Navigator>
   );
 };
-
-export default BottomTabNavigator;

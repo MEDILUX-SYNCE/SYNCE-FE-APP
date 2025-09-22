@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/RootStackParamList';
+import { TopNavigation } from '../../navigation/TopNavigation';
 
 export default function ArticleScreen() {
   const navigation =
@@ -21,11 +22,7 @@ export default function ArticleScreen() {
   return (
     <ScrollView style={styles.screen}>
       {/* 헤더 */}
-      <View style={{ margin: 16 }}>
-        <AppText color="black" size="xl" weight="bold">
-          아티클
-        </AppText>
-      </View>
+      <TopNavigation title={'아티클'} titleSize="xl" hasCancel={false} />
 
       {/* 카테고리 탭 */}
       <ScrollView

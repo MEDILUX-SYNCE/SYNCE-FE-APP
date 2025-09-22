@@ -10,9 +10,10 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import { AppText } from './AppText';
 import { colors } from '../theme/color';
+import { styles } from './styles';
 
 type ButtonType = 'fill' | 'outline' | 'secondary' | 'gray' | 'black' | 'white';
-type ButtonSize = 'small' | 'medium' | 'large';
+type ButtonSize = 'small' | 'smallMedium' | 'medium' | 'large';
 
 interface AppButtonProps {
   title: string;
@@ -47,6 +48,8 @@ export const AppButton = ({
     switch (size) {
       case 'small':
         return { width: 0.15 * width, height: 0.06 * height };
+      case 'smallMedium':
+        return { width: 0.35 * width, height: 0.06 * height };
       case 'medium':
         return { width: 0.7 * width, height: 0.06 * height };
       case 'large':
@@ -90,18 +93,22 @@ export const AppButton = ({
         !isWhite &&
         !isBlack &&
         (activate ? (
-          <LinearGradient
-            colors={['#FF3766', '#F58F95']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-            style={[styles.button, style, , getSizeStyle()]}
-          >
-            <AppText color="white" weight="bold" size="md">
-              {title}
-            </AppText>
-          </LinearGradient>
+          <View style={[styles.button, getSizeStyle()]}>
+            <LinearGradient
+              colors={['#FF3766', '#F58F95']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={[styles.button, style, , getSizeStyle()]}
+            >
+              {icon && <View>{icon}</View>}
+              <AppText color="white" weight="bold" size="md">
+                {title}
+              </AppText>
+            </LinearGradient>
+          </View>
         ) : (
           <View style={[styles.button, getSizeStyle()]}>
+            {icon && <View>{icon}</View>}
             <AppText color="white" weight="bold" size="md">
               {title}
             </AppText>
@@ -168,70 +175,3 @@ export const AppButton = ({
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: colors.gray1,
-    borderRadius: 16,
-    paddingVertical: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  outlineButton: {
-    borderRadius: 24,
-    paddingVertical: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: colors.gray2,
-    backgroundColor: colors.white,
-  },
-  outlineContent: {
-    gap: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  secondaryButton: {
-    borderRadius: 16,
-    padding: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.redwhite,
-  },
-  secondaryDisabled: {
-    backgroundColor: colors.gray2,
-  },
-  grayButton: {
-    borderRadius: 16,
-    padding: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.whitegray,
-  },
-  blackButton: {
-    gap: 16,
-    borderRadius: 16,
-    padding: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.black,
-  },
-  whiteInner: {
-    flexDirection: 'row',
-    borderRadius: 16,
-    paddingVertical: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.white,
-  },
-  disabled: {
-    opacity: 0.5,
-  },
-  iconWrapper: {
-    marginRight: 8,
-  },
-});

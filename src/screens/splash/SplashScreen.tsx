@@ -30,20 +30,14 @@ export default function SplashScreen() {
       {/* 로고 */}
       <Image
         source={require('../../assets/images/logos/whiteLogo.png')}
-        style={{ width: 200, height: 100 }}
+        style={{ width: 210, height: 100 }}
       />
 
       {/* 간편 로그인 + 버튼 */}
-      <View style={{ flexDirection: 'column', alignItems: 'center' }}>
+      <View style={styles.btnContainer}>
         {/* 간편 로그인 */}
-        <View style={{ gap: 8, flexDirection: 'row', alignItems: 'center' }}>
-          <View
-            style={{
-              height: 1,
-              backgroundColor: colors.gray2,
-              width: '35%',
-            }}
-          />
+        <View style={styles.btnWrapper}>
+          <View style={styles.line} />
           <AppText size="md" color="white" weight="medium">
             간편 로그인
           </AppText>
@@ -58,10 +52,16 @@ export default function SplashScreen() {
         {/* 버튼 */}
         <View style={{ flexDirection: 'row' }}>
           <TouchableOpacity onPress={() => navigation.navigate('Onboarding')}>
-            <Image source={require('../../assets/images/icons/google.png')} />
+            <Image
+              style={{ width: 100, height: 100 }}
+              source={require('../../assets/images/icons/google.png')}
+            />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate('Onboarding')}>
-            <Image source={require('../../assets/images/icons/apple.png')} />
+            <Image
+              style={{ width: 100, height: 100 }}
+              source={require('../../assets/images/icons/apple.png')}
+            />
           </TouchableOpacity>
         </View>
       </View>

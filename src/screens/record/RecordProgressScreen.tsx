@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable react-native/no-inline-styles */
 import { View, ScrollView, TouchableOpacity } from 'react-native';
 import { TopNavigation } from '../../navigation/TopNavigation';
 import { AppText } from '../../components/AppText';
@@ -37,7 +34,7 @@ export default function RecordProgressScreen() {
   return (
     <View style={styles.screen}>
       {/* 헤더 */}
-      <TopNavigation title="기록장 추가" hasBack hasCancel={true} />
+      <TopNavigation title="기록장 추가" hasCancel={true} />
 
       {/* 스크롤뷰 */}
       <ScrollView
@@ -45,7 +42,7 @@ export default function RecordProgressScreen() {
         contentContainerStyle={{ paddingBottom: insets.bottom + 140 }}
       >
         {/* 수술 종류 */}
-        <View style={styles.inputContainer}>
+        <View style={styles.ProgressInputContainer}>
           <AppText color="black" weight="bold" size="md">
             수술 종류
           </AppText>

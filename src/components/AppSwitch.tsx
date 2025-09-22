@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TouchableOpacity, View, StyleSheet, Animated } from 'react-native';
 import { colors } from '../theme/color';
+import { styles } from './styles';
 
 type Props = {
   value: boolean;
@@ -51,15 +52,3 @@ export const AppSwitch = ({
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  track: {
-    justifyContent: 'center',
-    padding: 2,
-  },
-  thumb: {
-    position: 'absolute',
-    borderRadius: 100,
-    top: 3,
-  },
-});

@@ -1,5 +1,3 @@
-// colors 객체 생성
-
 export const grayscale = {
   black: '#000000',
   gray4: '#4B515B',

@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { Modal, View, StyleSheet, Dimensions } from 'react-native';
 import { Calendar } from 'react-native-paper-dates';
 import { AppButton } from './AppButton';
-import { colors } from '../theme/color';
 import dayjs from 'dayjs';
 import { AppText } from './AppText';
-
-const { width, height } = Dimensions.get('window');
+import { styles } from './styles';
 
 type Props = {
   visible: boolean;
@@ -28,7 +26,7 @@ export default function CustomStyledDatePicker({
   return (
     <Modal visible={visible} transparent animationType="fade">
       <View style={styles.overlay}>
-        <View style={styles.container}>
+        <View style={styles.Pickercontainer}>
           <View style={styles.calendarWrapper}>
             {/* 헤더 영역 */}
             <View style={styles.header}>
@@ -86,36 +84,3 @@ export default function CustomStyledDatePicker({
     </Modal>
   );
 }
-
-const styles = StyleSheet.create({
-  overlay: {
-    flex: 1,
-    backgroundColor: '#00000066',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  header: {
-    paddingHorizontal: 16,
-    paddingVertical: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.gray1,
-  },
-  container: {
-    width: width * 0.9,
-    borderRadius: 16,
-    backgroundColor: colors.white,
-    padding: 16,
-  },
-  calendarWrapper: {
-    minHeight: height * 0.65,
-    justifyContent: 'center',
-  },
-  buttonRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 16,
-  },
-  buttonRight: {
-    flexDirection: 'row',
-  },
-});

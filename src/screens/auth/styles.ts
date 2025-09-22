@@ -9,6 +9,26 @@ export const styles = StyleSheet.create({
     padding: width * 0.05,
     backgroundColor: colors.white,
   },
+  tapContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingVertical: 20,
+    borderBottomWidth: 1,
+    borderColor: colors.white,
+  },
+  tabItem: {
+    paddingBottom: 16,
+  },
+  activeTab: {
+    borderBottomWidth: 2,
+    borderBottomColor: colors.black,
+  },
+  contentContainer: {
+    gap: 8,
+  },
+  contentWrapper: {
+    marginBottom: 32,
+  },
   stepIndicator: {
     flexDirection: 'row',
     justifyContent: 'center',
